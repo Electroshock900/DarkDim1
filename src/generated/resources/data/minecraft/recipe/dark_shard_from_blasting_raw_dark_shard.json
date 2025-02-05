@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 25,
+  "experience": 1.4,
+  "group": "rds_ds_blasting",
+  "ingredient": {
+    "item": "voidless:raw_dark_shard"
+  },
+  "result": {
+    "id": "voidless:dark_shard"
+  }
+}

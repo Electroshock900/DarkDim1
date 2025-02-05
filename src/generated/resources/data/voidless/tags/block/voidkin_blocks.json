@@ -1,0 +1,11 @@
+{
+  "values": [
+    "minecraft:lodestone",
+    "minecraft:crying_obsidian",
+    "minecraft:redstone_block",
+    "minecraft:redstone_lamp",
+    "minecraft:deepslate_redstone_ore",
+    "voidless:void_cobblestone",
+    "voidless:void_stone"
+  ]
+}

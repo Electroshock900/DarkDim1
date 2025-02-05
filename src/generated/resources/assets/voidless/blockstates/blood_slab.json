@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "voidless:block/blood_slab"
+    },
+    "type=double": {
+      "model": "voidless:block/blood_planks"
+    },
+    "type=top": {
+      "model": "voidless:block/blood_slab_top"
+    }
+  }
+}

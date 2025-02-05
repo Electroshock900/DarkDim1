@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0" : "forge:item/bucket",
+    "layer1" : "forge:item/bucket_drip"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "voidless:dark_shard_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "voidless:dark_shard"
+  }
+}

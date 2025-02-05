@@ -1,0 +1,15 @@
+// 1.21.1	2025-02-03T19:16:13.2751843	Tags for minecraft:block mod id voidless
+bd9b02aca0e5d5ce9471817c7e26855d3183fedb data/minecraft/tags/block/buttons.json
+2c666d939dfdc095024c6426ddf9cceff6a44449 data/minecraft/tags/block/fences.json
+55985f747e6c813cbd6f925b4e7931a2f224cf1d data/minecraft/tags/block/fence_gates.json
+7f9b699f7ac064f3529c9ad65aa24559f769d35f data/minecraft/tags/block/flowers.json
+0704ec8698271e241514fc09da0172fae2a31b8a data/minecraft/tags/block/leaves.json
+4fb74f64f336ff188ff96ddfea9db2d50ed6e412 data/minecraft/tags/block/logs.json
+4fb74f64f336ff188ff96ddfea9db2d50ed6e412 data/minecraft/tags/block/logs_that_burn.json
+cb3358b07262b48ea7fa7c76f75092254612bf0d data/minecraft/tags/block/mineable/pickaxe.json
+b0644ecce5d48eebcb3fe5c3fdbfe8d43c33500e data/minecraft/tags/block/needs_diamond_tool.json
+46916d7a0e815b12e6a304eb1cf845a8b93f6c59 data/minecraft/tags/block/needs_iron_tool.json
+123f29dbe2b6233672a7da3566c6075929e07c50 data/minecraft/tags/block/planks.json
+f66695e38ca9e4bb8ac463982271ccadc11d09c6 data/minecraft/tags/block/walls.json
+93c51bcfd4ee776b237eec05f010b5f12c15b643 data/voidless/tags/block/voidkin_blocks.json
+a13023323e0b7c7ac8e349085efe3afcda9fa4e3 data/voidless/tags/block/voidless_infiniburn.json

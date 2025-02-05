@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:block/crop",
+    "textures": {
+        "crop": "voidless:crop/dark_plant/dp_3"
+    }
+}

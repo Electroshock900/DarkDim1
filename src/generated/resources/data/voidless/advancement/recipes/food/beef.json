@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_beef_block_raw": {
+      "conditions": {
+        "items": [
+          {
+            "items": "voidless:beef_block_raw"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "voidless:beef"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_beef_block_raw"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "voidless:beef"
+    ]
+  }
+}

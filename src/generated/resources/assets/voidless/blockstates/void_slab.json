@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "voidless:block/void_slab"
+    },
+    "type=double": {
+      "model": "voidless:block/void_planks"
+    },
+    "type=top": {
+      "model": "voidless:block/void_slab_top"
+    }
+  }
+}

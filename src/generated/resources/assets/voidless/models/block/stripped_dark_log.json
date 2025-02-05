@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "voidless:block/stripped_dark_log_top",
+    "side": "voidless:block/stripped_dark_log"
+  }
+}

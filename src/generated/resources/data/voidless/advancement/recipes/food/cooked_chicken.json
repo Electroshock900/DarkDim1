@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_chicken_block_cooked": {
+      "conditions": {
+        "items": [
+          {
+            "items": "voidless:chicken_block_cooked"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "voidless:cooked_chicken"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_chicken_block_cooked"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "voidless:cooked_chicken"
+    ]
+  }
+}

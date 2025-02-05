@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/door_bottom_left",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "voidless:block/blood_door_bottom",
+    "top": "voidless:block/blood_door_top"
+  }
+}

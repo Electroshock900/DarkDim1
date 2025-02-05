@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:chicken"
+    }
+  },
+  "result": {
+    "id": "voidless:chicken_block_raw",
+    "count": 1
+  }
+}

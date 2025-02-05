@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:chain"
+    },
+    "D": {
+      "item": "voidless:stripped_dark_log"
+    }
+  },
+  "pattern": [
+    "C C",
+    "DDD",
+    "DDD"
+  ],
+  "result": {
+    "count": 6,
+    "id": "voidless:dark_hanging_sign"
+  }
+}

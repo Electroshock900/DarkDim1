@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "blocks",
+  "cookingtime": 200,
+  "experience": 0.7,
+  "group": "bmr_bmc",
+  "ingredient": {
+    "item": "voidless:mutton_block_raw"
+  },
+  "result": {
+    "id": "voidless:mutton_block_cooked"
+  }
+}

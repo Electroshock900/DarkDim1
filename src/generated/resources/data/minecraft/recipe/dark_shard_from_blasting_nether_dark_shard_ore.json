@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.5,
+  "group": "darkshard",
+  "ingredient": {
+    "item": "voidless:nether_dark_shard_ore"
+  },
+  "result": {
+    "id": "voidless:dark_shard"
+  }
+}

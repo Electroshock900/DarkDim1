@@ -1,0 +1,96 @@
+package net.voidless.voidless.entity.projectiles;
+
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.voidless.voidless.util.ModEntities;
+import net.voidless.voidless.util.ModItems;
+
+public class Anti_Cactus_Spine extends AbstractArrow {
+
+    public Anti_Cactus_Spine(EntityType<? extends AbstractArrow> p_36858_, Level p_36859_) {
+        super(p_36858_, p_36859_);
+    }
+
+    public Anti_Cactus_Spine(Level level, LivingEntity shooter) {
+        super(ModEntities.ANTI_SPINE.get(), shooter, level, new ItemStack(ModItems.ANTI_SPINE.get()),null);
+    }
+
+
+
+    public void tick() {
+        super.tick();
+        if (this.level().isClientSide) {
+            if (this.inGround) {
+
+                if (this.inGroundTime % 5 == 0) {
+                    this.makeParticle(1);
+                    this.makeParticle2(17);
+                }
+            }
+                    else {
+                this.makeParticle(1);
+                this.makeParticle2(12);
+            }
+        } else if (this.inGround && this.inGroundTime != 0 && /**!this.effects.isEmpty() &&**/ this.inGroundTime >= 600) {
+            this.level().broadcastEntityEvent(this, (byte)0);
+            this.discard();
+            /**this.potion = Potions.EMPTY;
+            this.effects.clear();
+            this.entityData.set(ID_EFFECT_COLOR, -1);**/
+        }
+
+    }
+
+    private void makeParticle(int p_36877_) {
+        /**int i = this.getColor();
+        if (i != -1 && p_36877_ > 0) {
+            double d0 = (double)(i >> 16 & 255) / 255.0D;
+            double d1 = (double)(i >> 8 & 255) / 255.0D;
+            double d2 = (double)(i >> 0 & 255) / 255.0D;
+        **/
+            for(int j = 0; j < p_36877_; ++j) {
+                this.level().addParticle(ParticleTypes.CRIT, this.getRandomX(0.5D), this.getRandomY(), this.getRandomZ(0.5D),0,0,0);//, d0, d1, d2);
+                //this.level().addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getRandomX(0.6D), this.getRandomY(), this.getRandomZ(0.9D),0, Mth.sin(7),0);//, d0, d1, d2);
+            }
+
+        }
+    private void makeParticle2(int p_36877_) {
+        /**int i = this.getColor();
+        if (i != -1 && p_36877_ > 0) {
+            double d0 = (double)(i >> 16 & 255) / 255.0D;
+            double d1 = (double)(i >> 8 & 255) / 255.0D;
+            double d2 = (double)(i >> 0 & 255) / 255.0D;
+        **/
+            for(int j = 0; j < p_36877_; ++j) {
+                //this.level().addParticle(ParticleTypes.CRIT, this.getRandomX(0.5D), this.getRandomY(), this.getRandomZ(0.5D),0,0,0);//, d0, d1, d2);
+                this.level().addParticle(ParticleTypes.SOUL_FIRE_FLAME, this.getRandomX(0.6D), this.getRandomY(), this.getRandomZ(0.9D),0, 0/**Mth.sin(7)**/,0);//, d0, d1, d2);
+                this.level().addParticle(ParticleTypes.SOUL, this.getRandomX(0.2D), this.getRandomY(), this.getRandomZ(0.2D),0, 0  /**Mth.sin(7)**/,0);//, d0, d1, d2);
+            }
+
+        }
+        //}
+
+    protected ItemStack getDefaultPickupItem() {
+            //if (this.effects.isEmpty() && this.potion == Potions.EMPTY) {
+            return ItemStack.EMPTY;//new ItemStack(ModItems.CACTUS_SPINE.get());
+
+
+    }
+
+    /**else {
+            ItemStack itemstack = new ItemStack(Items.TIPPED_ARROW);
+            PotionUtils.setPotion(itemstack, this.potion);
+            PotionUtils.setCustomEffects(itemstack, this.effects);
+            if (this.fixedColor) {
+                itemstack.getOrCreateTag().putInt("CustomPotionColor", this.getColor());
+            }
+
+            return itemstack;
+        }
+    }**/
+
+}
