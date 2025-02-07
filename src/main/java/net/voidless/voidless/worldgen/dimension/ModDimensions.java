@@ -98,14 +98,14 @@ public class ModDimensions {
         NoiseBasedChunkGenerator noiseBasedChunkGenerator = new NoiseBasedChunkGenerator(
                 MultiNoiseBiomeSource.createFromList(
                         new Climate.ParameterList<>(List.of(
-                                Pair.of(Climate.parameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 1.0F, 0.0F), biomeRegistry.getOrThrow(ModBiomes.DARK_BIOME)),
+                                Pair.of(Climate.parameters(0.7F, 0.3F, 0.0F, 0.0F, 0.0F, 1.0F, 0.0F), biomeRegistry.getOrThrow(ModBiomes.DARK_BIOME)),
                                 Pair.of(Climate.parameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.6F, 0.0F), biomeRegistry.getOrThrow(ModBiomes.BLOOD_BIOME)),
-                                Pair.of(Climate.parameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.3F, 0.0F), biomeRegistry.getOrThrow(ModBiomes.DARKLANDS)),
+                                Pair.of(Climate.parameters(0.4F, 0.0F, 0.0F, 0.0F, 0.0F, 0.3F, 0.0F), biomeRegistry.getOrThrow(ModBiomes.DARKLANDS)),
                                 //Pair.of(Climate.parameters(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.4F, 0.0F), biomeRegistry.getOrThrow(ModBiomes.DARKLAND_DESERT)),
-                                Pair.of(Climate.parameters(0.1F, 0.2F, 0.0F, 0.2F, 0.0F, 0.2F, 0.0F), biomeRegistry.getOrThrow(Biomes.BIRCH_FOREST)),
-                                Pair.of(Climate.parameters(0.3F, 0.6F, 0.1F, 0.1F, 0.0F, 0.5F, 0.0F), biomeRegistry.getOrThrow(Biomes.OCEAN)),
-                                Pair.of(Climate.parameters(0.4F, 0.3F, 0.2F, 0.1F, 0.0F, 0.7F, 0.0F), biomeRegistry.getOrThrow(Biomes.DARK_FOREST)),
-                                Pair.of(Climate.parameters(0.4F, 0.3F, 0.2F, 0.1F, 0.0F, 0.7F, 0.0F), biomeRegistry.getOrThrow(Biomes.SUNFLOWER_PLAINS))
+                                //Pair.of(Climate.parameters(0.1F, 0.2F, 0.4F, 0.2F, 0.0F, 0.2F, 0.0F), biomeRegistry.getOrThrow(Biomes.BIRCH_FOREST)),
+                                Pair.of(Climate.parameters(0.3F, 0.6F, 0.0F, 0.1F, 0.0F, 0.5F, 0.0F), biomeRegistry.getOrThrow(ModBiomes.DARK_OCEAN)),
+                                Pair.of(Climate.parameters(0.7F, 1.0F, 0.3F, 0.1F, 0.0F, 0.7F, 0.0F), biomeRegistry.getOrThrow(Biomes.DARK_FOREST))
+                                //Pair.of(Climate.parameters(0.4F, 0.3F, 0.2F, 0.1F, 0.0F, 0.7F, 0.0F), biomeRegistry.getOrThrow(Biomes.SUNFLOWER_PLAINS))
 
                         ))),
                 noiseGenSettings.getOrThrow(NoiseGeneratorSettings.OVERWORLD));

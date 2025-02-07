@@ -1,0 +1,106 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.mo2",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "Mo2_EntityModel",
+					"pivot": [0, 1.5, 0]
+				},
+				{
+					"name": "Body_Main",
+					"parent": "Mo2_EntityModel",
+					"pivot": [0, 1.5, 0],
+					"cubes": [
+						{"origin": [-2, 1, -2], "size": [4, 1, 4], "uv": [0, 18]}
+					]
+				},
+				{
+					"name": "Body_Lower",
+					"parent": "Body_Main",
+					"pivot": [0, 4, 0],
+					"cubes": [
+						{"origin": [-3, 2, -3], "size": [6, 3, 6], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "Body_Upper",
+					"parent": "Body_Lower",
+					"pivot": [0, 5, 0],
+					"cubes": [
+						{"origin": [-3, 5, -3], "size": [6, 3, 6], "uv": [0, 9]}
+					]
+				},
+				{
+					"name": "Tail",
+					"parent": "Body_Lower",
+					"pivot": [0, 0.5, 1],
+					"cubes": [
+						{"origin": [-0.5, 0, 0.5], "size": [1, 1, 3], "uv": [0, 23]}
+					]
+				},
+				{
+					"name": "Tail_2",
+					"parent": "Tail",
+					"pivot": [0, 0.5, 3.5],
+					"cubes": [
+						{"origin": [-0.5, 0, 3.5], "size": [1, 1, 3], "uv": [0, 23]}
+					]
+				},
+				{
+					"name": "Left_Leg",
+					"parent": "Body_Lower",
+					"pivot": [1.5, 0.5, 0],
+					"cubes": [
+						{"origin": [1, 0, -0.5], "size": [4, 1, 1], "uv": [5, 23]}
+					]
+				},
+				{
+					"name": "Right_Leg",
+					"parent": "Body_Lower",
+					"pivot": [-1.5, 0.5, 0],
+					"cubes": [
+						{"origin": [-5, 0, -0.5], "size": [4, 1, 1], "uv": [24, 6]}
+					]
+				},
+				{
+					"name": "Heads",
+					"parent": "Body_Lower",
+					"pivot": [0, 9, 0]
+				},
+				{
+					"name": "Head_C",
+					"parent": "Heads",
+					"pivot": [0, 10.5, 0],
+					"cubes": [
+						{"origin": [-1.5, 10, -1.5], "size": [3, 3, 3], "uv": [16, 18]}
+					]
+				},
+				{
+					"name": "Head_R",
+					"parent": "Heads",
+					"pivot": [-5, 8.5, 0],
+					"cubes": [
+						{"origin": [-6.5, 8, -1.5], "size": [3, 3, 3], "uv": [18, 9]}
+					]
+				},
+				{
+					"name": "Head_L",
+					"parent": "Heads",
+					"pivot": [5, 8.5, 0],
+					"cubes": [
+						{"origin": [3.5, 8, -1.5], "size": [3, 3, 3], "uv": [18, 0]}
+					]
+				}
+			]
+		}
+	]
+}

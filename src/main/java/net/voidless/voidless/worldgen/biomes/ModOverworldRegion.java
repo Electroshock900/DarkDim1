@@ -22,7 +22,8 @@ public class ModOverworldRegion extends Region {
         this.addModifiedVanillaOverworldBiomes(mapper, modifiedVanillaOverworldBuilder -> {
             modifiedVanillaOverworldBuilder.replaceBiome(Biomes.FOREST, ModBiomes.DARK_BIOME);
             modifiedVanillaOverworldBuilder.replaceBiome(Biomes.DESERT, ModBiomes.BLOOD_BIOME);
-            //modifiedVanillaOverworldBuilder.replaceBiome(Biomes.DARK_FOREST, DarkBiomes.DARKLANDS);
+            modifiedVanillaOverworldBuilder.replaceBiome(Biomes.BIRCH_FOREST, ModBiomes.DARKLANDS);
+            modifiedVanillaOverworldBuilder.replaceBiome(Biomes.OCEAN, ModBiomes.DARK_OCEAN);
             //modifiedVanillaOverworldBuilder.replaceBiome(Biomes.DESERT, ModBiomes.BLOOD_BIOME);
             //modifiedVanillaOverworldBuilder.replaceBiome(Biomes.DESERT, ModBiomes.BLOOD_BIOME);
 

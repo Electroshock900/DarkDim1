@@ -1,6 +1,6 @@
 {
   "type": "forge:add_features",
   "biomes": "#c:is_plains",
-  "features": "voidless:dark_tree_placed",
+  "features": "voidless:blood_tree_placed",
   "step": "vegetal_decoration"
 }

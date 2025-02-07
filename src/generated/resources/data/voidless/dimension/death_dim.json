@@ -1,0 +1,72 @@
+{
+  "type": "voidless:death_dim_type",
+  "generator": {
+    "type": "minecraft:noise",
+    "biome_source": {
+      "type": "minecraft:multi_noise",
+      "biomes": [
+        {
+          "biome": "voidless:dark_biome",
+          "parameters": {
+            "continentalness": 0.0,
+            "depth": 0.0,
+            "erosion": 0.0,
+            "humidity": 0.3,
+            "offset": 0.0,
+            "temperature": 0.7,
+            "weirdness": 1.0
+          }
+        },
+        {
+          "biome": "voidless:blood_biome",
+          "parameters": {
+            "continentalness": 0.0,
+            "depth": 0.0,
+            "erosion": 0.0,
+            "humidity": 0.0,
+            "offset": 0.0,
+            "temperature": 0.0,
+            "weirdness": 0.6
+          }
+        },
+        {
+          "biome": "voidless:darklands",
+          "parameters": {
+            "continentalness": 0.0,
+            "depth": 0.0,
+            "erosion": 0.0,
+            "humidity": 0.0,
+            "offset": 0.0,
+            "temperature": 0.4,
+            "weirdness": 0.3
+          }
+        },
+        {
+          "biome": "voidless:dark_ocean",
+          "parameters": {
+            "continentalness": 0.0,
+            "depth": 0.0,
+            "erosion": 0.1,
+            "humidity": 0.6,
+            "offset": 0.0,
+            "temperature": 0.3,
+            "weirdness": 0.5
+          }
+        },
+        {
+          "biome": "minecraft:dark_forest",
+          "parameters": {
+            "continentalness": 0.3,
+            "depth": 0.0,
+            "erosion": 0.1,
+            "humidity": 1.0,
+            "offset": 0.0,
+            "temperature": 0.7,
+            "weirdness": 0.7
+          }
+        }
+      ]
+    },
+    "settings": "minecraft:overworld"
+  }
+}

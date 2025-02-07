@@ -1,6 +1,6 @@
 {
   "type": "forge:add_features",
   "biomes": "#c:is_beach",
-  "features": "voidless:dark_tree_placed",
+  "features": "voidless:void_tree_placed",
   "step": "vegetal_decoration"
 }

@@ -1,0 +1,78 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "item/white_dye"
+	},
+	"overrides": [
+		{
+			"predicate": {
+				"custom_model_data": 1
+			},
+			"model": "seanmod:entities/897"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 2
+			},
+			"model": "seanmod:entities/body"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 3
+			},
+			"model": "seanmod:entities/flower"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 4
+			},
+			"model": "seanmod:entities/petal1"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 5
+			},
+			"model": "seanmod:entities/petal2"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 6
+			},
+			"model": "seanmod:entities/petal3"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 7
+			},
+			"model": "seanmod:entities/petal4"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 8
+			},
+			"model": "seanmod:entities/leftarm"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 9
+			},
+			"model": "seanmod:entities/leftleg"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 10
+			},
+			"model": "seanmod:entities/rightleg"
+		}
+	],
+	"aj": {
+		"includedRigs": {
+			"13e9fd76-a618-fd83-91e3-4355c1909fba": {
+				"name": "peary_java",
+				"usedIDs": [
+					[1, 10]
+				]
+			}
+		}
+	}
+}

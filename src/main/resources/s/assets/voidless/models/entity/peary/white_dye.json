@@ -1,0 +1,84 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "item/white_dye"
+	},
+	"overrides": [
+		{
+			"predicate": {
+				"custom_model_data": 1
+			},
+			"model": "voidless:entity/peary_1/body"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 2
+			},
+			"model": "voidless:entity/peary_1/face"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 3
+			},
+			"model": "voidless:entity/peary_1/flower"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 4
+			},
+			"model": "voidless:entity/peary_1/petal1"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 5
+			},
+			"model": "voidless:entity/peary_1/petal2"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 6
+			},
+			"model": "voidless:entity/peary_1/petal3"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 7
+			},
+			"model": "voidless:entity/peary_1/petal4"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 8
+			},
+			"model": "voidless:entity/peary_1/left_arm"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 9
+			},
+			"model": "voidless:entity/peary_1/right_arm"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 10
+			},
+			"model": "voidless:entity/peary_1/right_leg"
+		},
+		{
+			"predicate": {
+				"custom_model_data": 11
+			},
+			"model": "voidless:entity/peary_1/left_leg"
+		}
+	],
+	"aj": {
+		"includedRigs": {
+			"1f678fed-d6b3-be54-9630-f0f2f2624d60": {
+				"name": "voidless",
+				"usedIDs": [
+					[1, 11]
+				]
+			}
+		}
+	}
+}

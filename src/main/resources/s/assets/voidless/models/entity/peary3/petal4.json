@@ -1,0 +1,28 @@
+{
+	"__credit": "Generated using Animated Java (https://animated-java.dev/)",
+	"textures": {
+		"5": "voidless:entity/peary/peary"
+	},
+	"elements": [
+		{
+			"faces": {
+				"north": {"uv": [0, 0, 2, 0.2], "texture": "#5"},
+				"east": {"uv": [0, 0, 2, 0.2], "texture": "#5"},
+				"south": {"uv": [0, 0, 2, 0.2], "texture": "#5"},
+				"west": {"uv": [0, 0, 2, 0.2], "texture": "#5"},
+				"up": {"uv": [10.66667, 16, 16, 12], "rotation": 270, "texture": "#5"},
+				"down": {"uv": [10.66667, 12, 16, 16], "rotation": 90, "texture": "#5"}
+			},
+			"to": [8.6849, 4.99937, 8.4],
+			"from": [7.8849, 4.99937, 7.6],
+			"rotation": {"angle": 22.5, "axis": "z", "origin": [7.99251, 4.99764, 8]}
+		}
+	],
+	"display": {
+		"head": {
+			"translation": [0, 5.6, 0],
+			"scale": [4, 4, 4],
+			"rotation": [0, 0, 0]
+		}
+	}
+}

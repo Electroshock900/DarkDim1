@@ -45,7 +45,7 @@ public static final RegistryObject<FluidType> DEITY_BLOOD_FLUID_TYPE = FLUID_TYP
             WATER_FLOWING_RL,
             SOAP_OVERLAY_RL,
             0xD9ff6E, new Vector3f(217f / 255f, 255f / 255f, 110f / 255f),
-            FluidType.Properties.create().lightLevel(13).density(26).viscosity(3).canConvertToSource(true).canHydrate(true).canDrown(false)
+            FluidType.Properties.create().lightLevel(13).viscosity(7).canConvertToSource(true).canHydrate(true).canDrown(true)
                     .sound(SoundAction.get("drink"),
                     SoundEvents.SCULK_SHRIEKER_SHRIEK))
     );
