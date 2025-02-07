@@ -49,6 +49,11 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 .add(ModBlocks.VOID_PLANKS.get().asItem())
 
         ;
+        this.tag(ItemTags.STONE_CRAFTING_MATERIALS)
+                .add(ModBlocks.DARK_STONE.get().asItem(),
+                ModBlocks.BLOOD_STONE.get().asItem(),
+                ModBlocks.VOID_STONE.get().asItem()
+                );
         //this.tag(ItemTags.)
           //      .add(ModItems.BAR_BRAWL_MUSIC_DISC.get()
             //    );

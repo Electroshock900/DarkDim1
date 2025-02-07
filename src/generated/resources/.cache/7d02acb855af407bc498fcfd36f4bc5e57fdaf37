@@ -1,4 +1,5 @@
-// 1.21.1	2025-01-11T18:00:23.3171183	Tags for minecraft:item mod id voidless
+// 1.21.1	2025-02-07T11:48:54.3524062	Tags for minecraft:item mod id voidless
 b0c79191cf580175b885a572cd43c972ef93c70b data/minecraft/tags/item/logs_that_burn.json
 123f29dbe2b6233672a7da3566c6075929e07c50 data/minecraft/tags/item/planks.json
+7a434c810c7972db220002f63c5ecdeffd575a4e data/minecraft/tags/item/stone_crafting_materials.json
 f7414382f6afa7bb098ec718dac656734e8cdfc6 data/minecraft/tags/item/trimmable_armor.json

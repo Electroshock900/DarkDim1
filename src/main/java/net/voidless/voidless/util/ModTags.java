@@ -1,7 +1,7 @@
 package net.voidless.voidless.util;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -33,11 +33,23 @@ public class ModTags {
         }
     }
     public static class Biomes{
-        public static final TagKey<Biome> DARK_BIOMES = createTag("dark_biomes");
-        public static final TagKey<Biome> BLOOD_BIOMES = createTag("blood_biomes");
-
+        public static final TagKey<Biome> DARK_BIOMES = createTag(VoidlessMod.MODID,"dark_biomes");
+        public static final TagKey<Biome> BLOOD_BIOMES = createTag(VoidlessMod.MODID,"blood_biomes");
+/*
         private static TagKey<Biome> createTag(String name){
             return BiomeTags.create(ResourceLocation.fromNamespaceAndPath(VoidlessMod.MODID,name));
+        }*/
+        private static TagKey<Biome> createTag(String pName) {
+            return TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(VoidlessMod.MODID, pName));
+        }
+
+        public static TagKey<Biome> createTag(String namepsace, String path) {
+            return createTag(ResourceLocation.fromNamespaceAndPath(namepsace, path));
+        }
+
+        public static TagKey<Biome> createTag(ResourceLocation name) {
+            return TagKey.create(Registries.BIOME, name);
         }
     }
+
 }

@@ -5,7 +5,6 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.BootstrapContext;
-import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.Music;
@@ -18,11 +17,9 @@ import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import net.voidless.voidless.VoidlessMod;
-import net.voidless.voidless.world.DeathFeatures;
-import net.voidless.voidless.worldgen.ModPlacedFeatures;
 import net.voidless.voidless.util.ModEntities;
+import net.voidless.voidless.worldgen.ModPlacedFeatures;
 
 
 public class ModBiomes {
@@ -291,4 +288,5 @@ private static int calculateSkyColor(float temp) {
     public static ResourceKey<Biome> register(String name) {
         return ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(VoidlessMod.MODID, name));
     }
+
 }
