@@ -31,7 +31,7 @@ public class ModSurfaceRules {
     private static final SurfaceRules.RuleSource BLOOD_STONE = makeStateRule(ModBlocks.BLOOD_STONE.get());
     private static final SurfaceRules.RuleSource BLOOD_GRASS_BLOCK = makeStateRule(Blocks.GRASS_BLOCK);
     private static final SurfaceRules.RuleSource BLOOD_DIRT = makeStateRule(ModBlocks.BLOODY_DIRT.get());
-    //private static final SurfaceRules.RuleSource BLOOD = makeStateRule(ModBlocks.BLOODNESS_BLOCK.get());
+    private static final SurfaceRules.RuleSource BLOOD = makeStateRule(ModBlocks.BLOOD_BLOCK.get());
     //private static final SurfaceRules.RuleSource RAW_BLOOD = makeStateRule(ModBlocks.RAW_BLOODNESS_BLOCK.get());
 /**
     //mint
@@ -77,13 +77,15 @@ public class ModSurfaceRules {
                 //SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.BLOOD_BIOME),
                         //SurfaceRules.ifTrue(SurfaceRules.VERY_DEEP_UNDER_FLOOR, RAW_BLOOD)),
 
-                        SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DARK_OCEAN),
-                                SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, DARK_ESSENCE_BLOCK)),
-                      SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DARK_OCEAN),
+                        /*SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DARK_OCEAN),
+                                SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, BLOOD))*/
+                        SurfaceRules.sequence(
+                                SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR,BLOOD))
+                      /**SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DARK_OCEAN),
                                 SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR, DARK_STONE)),
                         SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DARK_OCEAN),
                                 SurfaceRules.ifTrue(SurfaceRules.VERY_DEEP_UNDER_FLOOR, DARK_STONE))
-
+                        **/
 
 
 

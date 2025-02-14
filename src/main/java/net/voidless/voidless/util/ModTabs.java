@@ -1,7 +1,6 @@
 package net.voidless.voidless.util;
 
 
-import net.minecraft.core.Position;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -86,6 +85,7 @@ public class ModTabs {
                         pOutput.accept(ModItems.SOUL_COIN.get());
 
                         pOutput.accept(ModItems.DPITEM.get());
+                        pOutput.accept(ModBlocks.DARKSIDE_PORTAL2.get());
                         pOutput.accept(ModBlocks.MODPORTAL.get());
                         pOutput.accept(ModBlocks.DARKSIDE_PORTAL.get());
 

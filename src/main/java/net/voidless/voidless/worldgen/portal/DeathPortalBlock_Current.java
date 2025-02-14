@@ -1,15 +1,11 @@
-package net.voidless.voidless.blocks.custom;
+package net.voidless.voidless.worldgen.portal;
 
-import com.mojang.authlib.minecraft.client.MinecraftClient;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.layouts.EqualSpacingLayout;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -18,46 +14,35 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LevelEvent;
+import net.minecraft.world.level.block.Portal;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.border.WorldBorder;
 import net.minecraft.world.level.dimension.DimensionType;
-import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.portal.DimensionTransition;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.extensions.IForgeLevel;
-import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.fml.config.ModConfig;
 import net.voidless.voidless.Config;
 import net.voidless.voidless.VoidlessMod;
-import net.voidless.voidless.datagen.ModBlockTagGenerator;
 import net.voidless.voidless.util.ModParticles;
 import net.voidless.voidless.util.ModSounds;
 import net.voidless.voidless.util.ModTags;
 import net.voidless.voidless.worldgen.dimension.ModDimensions;
-import net.voidless.voidless.worldgen.portal.ModTeleporter;
 import org.apache.commons.lang3.mutable.MutableInt;
-import org.apache.logging.log4j.core.jmx.Server;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Map;
 
 
 
-public class DeathPortalBlock extends Block implements  Portal {
+public class DeathPortalBlock_Current extends Block implements  Portal {
 
     public static final BooleanProperty DISALLOW_RETURN = BooleanProperty.create("is_one_way");
     public static final Component PORTAL_UNWORTHY = Component.translatable("misc.voidless.portal_unworthy");
@@ -67,7 +52,7 @@ public class DeathPortalBlock extends Block implements  Portal {
     @Nullable
     private static ResourceKey<Level> cachedOriginDimension;
 
-    public DeathPortalBlock(BlockBehaviour.Properties properties) {
+    public DeathPortalBlock_Current(BlockBehaviour.Properties properties) {
         super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(DISALLOW_RETURN, false));
     }

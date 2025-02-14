@@ -8,11 +8,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.voidless.voidless.VoidlessMod;
-import net.voidless.voidless.entity.custom.SeatEntity;
 import net.voidless.voidless.entity.custom.*;
 import net.voidless.voidless.entity.projectiles.*;
-import net.voidless.voidless.entity.projectiles.Anti_Cactus_Spine;
-import net.voidless.voidless.entity.projectiles.Blood_Spine;
 
 public class ModEntities {
     public static DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, VoidlessMod.MODID);
@@ -119,6 +116,7 @@ public static RegistryObject<EntityType<AresArrow>> ARESARROW = ENTITY_TYPES.reg
             ENTITY_TYPES.register("seat",()->
                     EntityType.Builder.of(SeatEntity::new,MobCategory.MISC)
                             .sized(0.5f,0.5f)
+                            .passengerAttachments(0.364f)
                             .build("seat")
             );
     public static final RegistryObject<EntityType<CheeseHorse>> CHEESE_HORSE =

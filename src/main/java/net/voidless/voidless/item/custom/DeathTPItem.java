@@ -18,8 +18,6 @@ import net.minecraft.world.level.portal.DimensionTransition;
 import net.voidless.voidless.worldgen.dimension.ModDimensions;
 import net.voidless.voidless.worldgen.portal.ModTeleporter;
 
-import java.util.HashSet;
-
 public class DeathTPItem extends Item {
     private static ResourceKey<Level> cachedOriginDimension;
     public DeathTPItem(Properties pProperties) {
@@ -30,6 +28,8 @@ public class DeathTPItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         if (pPlayer.level().isClientSide()){
             //pPlayer.changeDimension(this.getPortalDestination(pPlayer.getServer().getLevel(ModDimensions.DEATH_DIM_LEVEL_KEY), pPlayer,pPlayer.getOnPos()));
+            getPortalDestination(pLevel.getServer().getLevel(ModDimensions.DEATH_DIM_LEVEL_KEY),pPlayer,pPlayer.getOnPos());
+            //pPlayer.changeDimension(ModTeleporter.createTransition(pPlayer,pLevel.getServer().getLevel(ModDimensions.DEATH_DIM_LEVEL_KEY),pPlayer.getOnPos(),false ));
             //pPlayer.teleportTo(ModDimensions.DEATH_DIM_LEVEL_KEY,pPlayer.xOld,pPlayer.yOld,pPlayer.zOld,new HashSet<>(),0,0);
             //pPlayer.
         }

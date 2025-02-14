@@ -1,6 +1,7 @@
 package net.voidless.voidless.entity.custom;
 
 
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -8,7 +9,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -20,14 +20,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-//import net.voidless.voidless.entity.projectiles.Cactus_Spine;
 import net.voidless.voidless.entity.projectiles.Cactus_Spine;
+import net.voidless.voidless.util.ModEntities;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 
-public class Cactus_Buddy2 extends Animal {//implements GeoEntity implements RangedAttackMob {
-//    private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
+public class Cactus_Buddy2 extends Animal{//} implements GeoEntity {
+    //private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
     private static final EntityDataAccessor<Boolean> ATTACKING =
             SynchedEntityData.defineId(Cactus_Buddy2.class, EntityDataSerializers.BOOLEAN);
     public Cactus_Buddy2(EntityType<? extends Animal> entityType, Level level) {
@@ -54,7 +54,7 @@ public class Cactus_Buddy2 extends Animal {//implements GeoEntity implements Ran
         }else{
             --this.idleAnimationTimeout;
         }
-       /** if(this.isAttacking()&&attackAnimationTimeout<=0){
+        if(this.isAttacking()&&attackAnimationTimeout<=0){
             attackAnimationTimeout = 20;
             attackAnimationState.start(this.tickCount);
         }else{
@@ -63,7 +63,7 @@ public class Cactus_Buddy2 extends Animal {//implements GeoEntity implements Ran
 
         if(!this.isAttacking()){
             attackAnimationState.stop();
-        }**/
+        }
     }
 
     @Override
@@ -77,18 +77,28 @@ public class Cactus_Buddy2 extends Animal {//implements GeoEntity implements Ran
 
     }
 
-    /**public void setAttacking(boolean attacking){
+    public void setAttacking(boolean attacking){
         this.entityData.set(ATTACKING,attacking);
     }
 
     public boolean isAttacking(){
         return this.entityData.get(ATTACKING);
-    }**/
+    }
 
     @Override
     protected void defineSynchedData(SynchedEntityData.@NotNull Builder pBuilder) {
+        this.entityData.set(ATTACKING,false);
         super.defineSynchedData(pBuilder);
-        //this.entityData.set(ATTACKING,false);
+    }
+    @Override
+    public void addAdditionalSaveData(CompoundTag pCompound) {
+        super.addAdditionalSaveData(pCompound);
+        pCompound.putBoolean("ATTACKING", this.isAttacking());
+    }
+    @Override
+    public void readAdditionalSaveData(CompoundTag pCompound) {
+        super.readAdditionalSaveData(pCompound);
+        this.entityData.set(ATTACKING, pCompound.getBoolean("ATTACKING"));
     }
 
 
@@ -125,7 +135,7 @@ public class Cactus_Buddy2 extends Animal {//implements GeoEntity implements Ran
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(@NotNull ServerLevel pLevel, @NotNull AgeableMob pMob) {
-        return null;//ModEntities.CACTUS_BUDDY.get().create(pLevel);
+        return ModEntities.CACTUS_BUDDY.get().create(pLevel);
     }
 
     @Override
@@ -143,8 +153,8 @@ public class Cactus_Buddy2 extends Animal {//implements GeoEntity implements Ran
         snowball.shoot(d1, d2 + d4, d3, 1.6F, 12.0F);
         this.playSound(SoundEvents.SNOW_GOLEM_SHOOT, 1.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
         this.level().addFreshEntity(snowball);
-    }
-    /**private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> tAnimationState) {
+    }/**
+    private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> tAnimationState) {
 
         if (tAnimationState.isMoving()) {
             tAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.cactus_buddy.walk", Animation.LoopType.LOOP));
@@ -177,7 +187,7 @@ public class Cactus_Buddy2 extends Animal {//implements GeoEntity implements Ran
 
 
 
-    /**
+    /*
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
         controllerRegistrar.add(new AnimationController<>(this,"controller",0,this::predicate));
@@ -188,6 +198,6 @@ public class Cactus_Buddy2 extends Animal {//implements GeoEntity implements Ran
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return cache;
-    }
-**/
+    }*/
+
 }

@@ -12,7 +12,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.saveddata.SavedData;
 import net.minecraft.world.level.storage.DimensionDataStorage;
 import org.jetbrains.annotations.Nullable;
-import net.voidless.voidless.worldgen.portal.ModTeleporter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +28,7 @@ public class TeleporterCache extends SavedData {
     public static TeleporterCache get(ServerLevel level) {
         ServerLevel server = level.getServer().overworld();
         DimensionDataStorage storage = server.getDataStorage();
-        return storage.computeIfAbsent(TeleporterCache.factory(), "voidless_teleporter_cache");
+        return storage.computeIfAbsent(TeleporterCache.factory(), "voidless:teleporter_cache");
     }
 
     public static Factory<TeleporterCache> factory() {

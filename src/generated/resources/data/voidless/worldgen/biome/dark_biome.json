@@ -4,6 +4,12 @@
   "effects": {
     "fog_color": 3351608,
     "grass_color": 921102,
+    "particle": {
+      "probability": 0.1,
+      "options": {
+       "type": "minecraft:electric_spark"
+      }
+    },
     "mood_sound": {
       "block_search_extent": 8,
       "offset": 2.0,

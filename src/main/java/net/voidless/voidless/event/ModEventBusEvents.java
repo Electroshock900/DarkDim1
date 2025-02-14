@@ -4,13 +4,11 @@ import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.client.event.RegisterDimensionSpecialEffectsEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.voidless.voidless.VoidlessMod;
 import net.voidless.voidless.entity.ModModelLayers;
 import net.voidless.voidless.entity.custom.*;
@@ -65,6 +63,7 @@ public class ModEventBusEvents {
     event.registerSpriteSet(ModParticles.DEATH_SKULLS.get(),DeathSkullsParticle.Provider::new);
     //event.registerSpriteSet(ModParticles.get(),GhostFlameParticle.Provider::new);
     }
+
     //private static void registerDimensionalStuff(RegisterDimensionSpecialEffectsEvent)
     @SubscribeEvent
     public static void registerSpawnPlacements(SpawnPlacementRegisterEvent event) {

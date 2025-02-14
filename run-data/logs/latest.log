@@ -1,40 +1,38 @@
-[07Feb2025 16:11:52.217] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forge_userdev_data, --assetIndex, 17, --assetsDir, C:\Users\shawn\.gradle\caches\forge_gradle\assets, --gameDir, ., --mod, voidless, --all, --output, E:\Minecraft Modding\Forge\1.21.1-52.0.37\src\generated\resources, --existing, E:\Minecraft Modding\Forge\1.21.1-52.0.37\src\main\resources]
-[07Feb2025 16:11:52.220] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: JVM identified as Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 21.0.4+8-LTS-274
-[07Feb2025 16:11:52.222] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.2.2 starting: java version 21.0.4 by Oracle Corporation; OS Windows 11 arch amd64 version 10.0
-[07Feb2025 16:11:52.322] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forge_userdev_data
-[07Feb2025 16:11:52.434] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=jar:file:///C:/Users/shawn/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.7/8ab114ac385e6dbdad5efafe28aba4df8120915f/mixin-0.8.7.jar!/ Service=ModLauncher Env=UNKNOWN
-[07Feb2025 16:11:53.609] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: Found 2 dependencies adding them to mods collection
-[07Feb2025 16:11:54.513] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
-[07Feb2025 16:11:54.520] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forge_userdev_data' with arguments [--gameDir, ., --assetsDir, C:\Users\shawn\.gradle\caches\forge_gradle\assets, --assetIndex, 17, --mod, voidless, --all, --output, E:\Minecraft Modding\Forge\1.21.1-52.0.37\src\generated\resources, --existing, E:\Minecraft Modding\Forge\1.21.1-52.0.37\src\main\resources]
-[07Feb2025 16:11:54.595] [main/WARN] [mixin/]: Reference map 'terrablender.refmap.json' for terrablender.mixins.json could not be read. If this is a development environment you can ignore this message
-[07Feb2025 16:11:54.596] [main/WARN] [mixin/]: Reference map 'terrablender.refmap.json' for terrablender_forge.mixins.json could not be read. If this is a development environment you can ignore this message
-[07Feb2025 16:11:54.596] [main/WARN] [mixin/]: Reference map 'geckolib.refmap.json' for geckolib.mixins.json could not be read. If this is a development environment you can ignore this message
-[07Feb2025 16:11:54.597] [main/WARN] [mixin/]: Mixin environment was unable to detect the current side, sided mixins will not be applied
-[07Feb2025 16:11:54.643] [main/WARN] [mixin/]: Mixin environment was unable to detect the current side, sided mixins will not be applied
-[07Feb2025 16:11:54.643] [main/WARN] [mixin/]: Mixin environment was unable to detect the current side, sided mixins will not be applied
-[07Feb2025 16:11:54.644] [main/WARN] [mixin/]: Mixin environment was unable to detect the current side, sided mixins will not be applied
-[07Feb2025 16:11:54.853] [main/INFO] [MixinExtras|Service/]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.3.5).
-[07Feb2025 16:11:59.045] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 52.0.37, for MC 1.21.1 with MCP 20240808.132146
-[07Feb2025 16:11:59.045] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v52.0.37 Initialized
-[07Feb2025 16:11:59.062] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Opening jdk.naming.dns/com.sun.jndi.dns to java.naming
-[07Feb2025 16:11:59.421] [main/INFO] [net.minecraftforge.data.loading.DatagenModLoader/]: Initializing Data Gatherer for mods [voidless]
-[07Feb2025 16:11:59.463] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/shawn/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.21.1-52.0.37_mapped_parchment_2024.11.17-1.21.1/forge-1.21.1-52.0.37_mapped_parchment_2024.11.17-1.21.1.jar%230!/assets/.mcassetsroot' uses unexpected schema
-[07Feb2025 16:11:59.464] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/shawn/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.21.1-52.0.37_mapped_parchment_2024.11.17-1.21.1/forge-1.21.1-52.0.37_mapped_parchment_2024.11.17-1.21.1.jar%230!/data/.mcassetsroot' uses unexpected schema
-[07Feb2025 16:11:59.578] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Recipes
-[07Feb2025 16:11:59.804] [main/INFO] [net.minecraft.data.DataGenerator/]: Recipes finished after 224 ms
-[07Feb2025 16:11:59.804] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Loot Tables
-[07Feb2025 16:11:59.849] [main/INFO] [net.minecraft.data.DataGenerator/]: Loot Tables finished after 44 ms
-[07Feb2025 16:11:59.849] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Block States: voidless
-[07Feb2025 16:12:00.047] [main/INFO] [net.minecraft.data.DataGenerator/]: Block States: voidless finished after 197 ms
-[07Feb2025 16:12:00.048] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Item Models: voidless
-[07Feb2025 16:12:00.064] [main/INFO] [net.minecraft.data.DataGenerator/]: Item Models: voidless finished after 16 ms
-[07Feb2025 16:12:00.064] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:block mod id voidless
-[07Feb2025 16:12:00.072] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:block mod id voidless finished after 8 ms
-[07Feb2025 16:12:00.073] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:item mod id voidless
-[07Feb2025 16:12:00.074] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:item mod id voidless finished after 0 ms
-[07Feb2025 16:12:00.074] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:worldgen/biome mod id vanilla
-[07Feb2025 16:12:00.074] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:worldgen/biome mod id vanilla finished after 0 ms
-[07Feb2025 16:12:00.074] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Registries
-[07Feb2025 16:12:00.093] [main/INFO] [net.minecraft.data.DataGenerator/]: Registries finished after 19 ms
-[07Feb2025 16:12:00.093] [main/INFO] [net.minecraft.data.DataGenerator/]: All providers took: 515 ms
-[07Feb2025 16:12:00.114] [main/INFO] [net.minecraft.data.HashCache/]: Caching: total files: 660, old count: 664, new count: 590, removed stale: 71, written: 0
+[07Feb2025 20:03:09.633] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forge_userdev_data, --assetIndex, 17, --assetsDir, C:\Users\shawn\.gradle\caches\forge_gradle\assets, --gameDir, ., --mod, voidless, --all, --output, E:\Minecraft Modding\Forge\1.21.1-52.0.37\src\generated\resources, --existing, E:\Minecraft Modding\Forge\1.21.1-52.0.37\src\main\resources]
+[07Feb2025 20:03:09.636] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: JVM identified as Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 21.0.4+8-LTS-274
+[07Feb2025 20:03:09.638] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.2.2 starting: java version 21.0.4 by Oracle Corporation; OS Windows 11 arch amd64 version 10.0
+[07Feb2025 20:03:09.742] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forge_userdev_data
+[07Feb2025 20:03:09.859] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=jar:file:///C:/Users/shawn/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.7/8ab114ac385e6dbdad5efafe28aba4df8120915f/mixin-0.8.7.jar!/ Service=ModLauncher Env=UNKNOWN
+[07Feb2025 20:03:10.828] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: Found 2 dependencies adding them to mods collection
+[07Feb2025 20:03:11.540] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
+[07Feb2025 20:03:11.549] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forge_userdev_data' with arguments [--gameDir, ., --assetsDir, C:\Users\shawn\.gradle\caches\forge_gradle\assets, --assetIndex, 17, --mod, voidless, --all, --output, E:\Minecraft Modding\Forge\1.21.1-52.0.37\src\generated\resources, --existing, E:\Minecraft Modding\Forge\1.21.1-52.0.37\src\main\resources]
+[07Feb2025 20:03:11.641] [main/WARN] [mixin/]: Reference map 'terrablender.refmap.json' for terrablender.mixins.json could not be read. If this is a development environment you can ignore this message
+[07Feb2025 20:03:11.643] [main/WARN] [mixin/]: Reference map 'terrablender.refmap.json' for terrablender_forge.mixins.json could not be read. If this is a development environment you can ignore this message
+[07Feb2025 20:03:11.644] [main/WARN] [mixin/]: Reference map 'geckolib.refmap.json' for geckolib.mixins.json could not be read. If this is a development environment you can ignore this message
+[07Feb2025 20:03:11.645] [main/WARN] [mixin/]: Mixin environment was unable to detect the current side, sided mixins will not be applied
+[07Feb2025 20:03:11.688] [main/WARN] [mixin/]: Mixin environment was unable to detect the current side, sided mixins will not be applied
+[07Feb2025 20:03:11.689] [main/WARN] [mixin/]: Mixin environment was unable to detect the current side, sided mixins will not be applied
+[07Feb2025 20:03:11.689] [main/WARN] [mixin/]: Mixin environment was unable to detect the current side, sided mixins will not be applied
+[07Feb2025 20:03:11.924] [main/INFO] [MixinExtras|Service/]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.3.5).
+[07Feb2025 20:03:16.070] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 52.0.37, for MC 1.21.1 with MCP 20240808.132146
+[07Feb2025 20:03:16.070] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v52.0.37 Initialized
+[07Feb2025 20:03:16.089] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Opening jdk.naming.dns/com.sun.jndi.dns to java.naming
+[07Feb2025 20:03:16.457] [main/INFO] [net.minecraftforge.data.loading.DatagenModLoader/]: Initializing Data Gatherer for mods [voidless]
+[07Feb2025 20:03:16.515] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/shawn/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.21.1-52.0.37_mapped_parchment_2024.11.17-1.21.1/forge-1.21.1-52.0.37_mapped_parchment_2024.11.17-1.21.1.jar%230!/assets/.mcassetsroot' uses unexpected schema
+[07Feb2025 20:03:16.516] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/shawn/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.21.1-52.0.37_mapped_parchment_2024.11.17-1.21.1/forge-1.21.1-52.0.37_mapped_parchment_2024.11.17-1.21.1.jar%230!/data/.mcassetsroot' uses unexpected schema
+[07Feb2025 20:03:16.662] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Recipes
+[07Feb2025 20:03:16.875] [main/INFO] [net.minecraft.data.DataGenerator/]: Recipes finished after 212 ms
+[07Feb2025 20:03:16.875] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Loot Tables
+[07Feb2025 20:03:16.915] [main/INFO] [net.minecraft.data.DataGenerator/]: Loot Tables finished after 39 ms
+[07Feb2025 20:03:16.915] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Block States: voidless
+[07Feb2025 20:03:17.130] [main/INFO] [net.minecraft.data.DataGenerator/]: Block States: voidless finished after 214 ms
+[07Feb2025 20:03:17.131] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Item Models: voidless
+[07Feb2025 20:03:17.150] [main/INFO] [net.minecraft.data.DataGenerator/]: Item Models: voidless finished after 19 ms
+[07Feb2025 20:03:17.150] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:block mod id voidless
+[07Feb2025 20:03:17.161] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:block mod id voidless finished after 10 ms
+[07Feb2025 20:03:17.161] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:item mod id voidless
+[07Feb2025 20:03:17.162] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:item mod id voidless finished after 0 ms
+[07Feb2025 20:03:17.162] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Registries
+[07Feb2025 20:03:17.187] [main/INFO] [net.minecraft.data.DataGenerator/]: Registries finished after 24 ms
+[07Feb2025 20:03:17.188] [main/INFO] [net.minecraft.data.DataGenerator/]: All providers took: 525 ms
+[07Feb2025 20:03:17.199] [main/INFO] [net.minecraft.data.HashCache/]: Caching: total files: 590, old count: 594, new count: 589, removed stale: 2, written: 2

@@ -2,49 +2,23 @@ package net.voidless.voidless.worldgen.dimension;
 
 
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.core.*;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-
 import net.minecraft.data.worldgen.BootstrapContext;
-import net.minecraft.data.worldgen.DimensionTypes;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.ConstantInt;
-import net.minecraft.world.TickRateManager;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.flag.FeatureFlagSet;
-import net.minecraft.world.item.alchemy.PotionBrewing;
-import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.*;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.chunk.ChunkSource;
 import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.dimension.LevelStem;
-import net.minecraft.world.level.entity.LevelEntityGetter;
-import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
 import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
-import net.minecraft.world.level.levelgen.WorldDimensions;
-import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.saveddata.maps.MapId;
-import net.minecraft.world.level.saveddata.maps.MapItemSavedData;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.scores.Scoreboard;
-import net.minecraft.world.ticks.LevelTickAccess;
 import net.voidless.voidless.VoidlessMod;
 import net.voidless.voidless.util.ModTags;
 import net.voidless.voidless.worldgen.biomes.ModBiomes;
-import org.jetbrains.annotations.Nullable;
 
-import java.awt.*;
-import java.rmi.registry.Registry;
 import java.util.List;
 import java.util.OptionalLong;
 
@@ -69,7 +43,7 @@ public class ModDimensions {
     }*/
     public static void bootstrapType(BootstrapContext<DimensionType> context) {
         context.register(DEATH_DIM_TYPE, new DimensionType(
-                OptionalLong.of(00000), // fixedTime
+                OptionalLong.of(18000), // fixedTime
                 true, // hasSkylight
                 false, // hasCeiling
                 false, // ultraWarm
@@ -82,7 +56,7 @@ public class ModDimensions {
                 2032, // logicalHeight
                 ModTags.Blocks.VOIDLESS_INFINIBURN, // infiniburn
                 BuiltinDimensionTypes.OVERWORLD_EFFECTS, // effectsLocation
-                1.0f, // ambientLight
+                0.6f, // ambientLight
                 new DimensionType.MonsterSettings(true, false, ConstantInt.of(0), 11)));
     }
 

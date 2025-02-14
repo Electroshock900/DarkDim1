@@ -26,7 +26,9 @@
       "minecraft:spring_water",
       "minecraft:spring_lava"
     ],
-    [],
+    [
+      "voidless:dark_tree_placed"
+    ],
     [
       "minecraft:freeze_top_layer"
     ]

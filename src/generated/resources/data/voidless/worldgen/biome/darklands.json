@@ -46,13 +46,13 @@
     "axolotls": [],
     "creature": [
       {
-        "type": "minecraft:pig",
+        "type": "voidless:war_turtle",
         "maxCount": 5,
         "minCount": 1,
         "weight": 7
       },
       {
-        "type": "minecraft:pig",
+        "type": "voidless:cactus_buddy",
         "maxCount": 13,
         "minCount": 3,
         "weight": 4
@@ -61,7 +61,7 @@
     "misc": [],
     "monster": [
       {
-        "type": "minecraft:phantom",
+        "type": "minecraft:cat",
         "maxCount": 200,
         "minCount": 1,
         "weight": 2

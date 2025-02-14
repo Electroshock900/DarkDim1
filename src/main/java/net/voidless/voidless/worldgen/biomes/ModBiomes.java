@@ -134,9 +134,10 @@ public class ModBiomes {
 
         //biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.CANDY_CANE_FLOWER_PLACED_KEY);
 
-        //biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.DARK_TREE_PLACED_KEY);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.DARK_TREE_PLACED_KEY);
         //biomeBuilder.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, ModPlacedFeatures.DARK_STONE_PILLAR);
-        globalOverworldGeneration(biomeBuilder);
+        //globalOverworldGeneration(biomeBuilder);
+
         //SPAWNING
         MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
 
@@ -157,7 +158,7 @@ public class ModBiomes {
                 .hasPrecipitation(true)
                 .downfall(0.8f)
                 .temperature(0.7f)
-                .generationSettings(biomeBuilder.build())
+                //.generationSettings(biomeBuilder.build())
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
                         .waterColor(0x0e000f)
@@ -173,7 +174,7 @@ public class ModBiomes {
         //BIOME
         BiomeGenerationSettings.Builder biomeBuilder =
                 new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
-        //biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.BLOOD_TREE_PLACED_KEY);
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.BLOOD_TREE_PLACED_KEY);
         //biomeBuilder.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, ModPlacedFeatures.DARK_STONE_PILLAR);
         globalOverworldGeneration(biomeBuilder);
         //SPAWNING

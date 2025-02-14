@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:moving_piston",
+    "voidless:darkside_portal"
+  ]
+}

@@ -4,20 +4,13 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.core.Registry;
-import net.minecraft.core.particles.ParticleType;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -33,10 +26,12 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.voidless.voidless.entity.render.*;
 import net.voidless.voidless.fluid.ModFluidTypes;
 import net.voidless.voidless.fluid.ModFluids;
-import net.voidless.voidless.screen.custom.*;
+import net.voidless.voidless.screen.custom.WarTortoiseHybridScreen;
+import net.voidless.voidless.screen.custom.WarTortoiseScreen;
+import net.voidless.voidless.screen.custom.WarTurtleScreen;
 import net.voidless.voidless.util.*;
+import net.voidless.voidless.worldgen.biomes.ModTerraBlender;
 import net.voidless.voidless.worldgen.biomes.surface.ModSurfaceRules;
-import net.voidless.voidless.worldgen.dimension.ModDimensions;
 import org.slf4j.Logger;
 import terrablender.api.SurfaceRuleManager;
 
@@ -82,7 +77,8 @@ public class VoidlessMod
         ModEnchantmentEffects.register(modEventBus);
         ModMenuTypes.register(modEventBus);
 
-        //ModTerraBlender.registerBiomes();
+        ModPoiTypes.register(modEventBus);
+        ModTerraBlender.registerBiomes();
 
 
 

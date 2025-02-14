@@ -2,11 +2,9 @@ package net.voidless.voidless.worldgen.portal;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.*;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
@@ -17,14 +15,15 @@ import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.portal.DimensionTransition;
 import net.minecraft.world.phys.Vec3;
 import net.voidless.voidless.VoidlessMod;
-import net.voidless.voidless.blocks.custom.DeathPortalBlock;
 import net.voidless.voidless.util.ModBlocks;
-import net.voidless.voidless.util.ModTags;
 import net.voidless.voidless.worldgen.dimension.ModDimensions;
 import org.apache.commons.lang3.mutable.MutableInt;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import java.util.function.Predicate;
 
 public class ModTeleporter{
@@ -131,7 +130,7 @@ public class ModTeleporter{
                 VoidlessMod.LOGGER.debug("Caching Src Portal Blocks to {}", blockpos);
                 Map<BlockPos, Boolean> portalBlocks = new HashMap<>();
                 portalBlocks.put(entity.blockPosition(), true);
-                DeathPortalBlock.recursivelyValidatePortal(entity.level(), entity.blockPosition(), portalBlocks, new MutableInt(0), entity.level().getBlockState(entity.blockPosition()));
+                DeathPortalBlock_Current.recursivelyValidatePortal(entity.level(), entity.blockPosition(), portalBlocks, new MutableInt(0), entity.level().getBlockState(entity.blockPosition()));
                 BlockPos finalBlockpos = blockpos;
                 portalBlocks.forEach((blockPos, b) -> {
                     if (b) {
@@ -560,7 +559,7 @@ public class ModTeleporter{
         }
 
         // portal in it
-        BlockState portal = ModBlocks.DARKSIDE_PORTAL.get().defaultBlockState().setValue(DeathPortalBlock.DISALLOW_RETURN, locked /*|| !Config.shouldReturnPortalBeUsable*/);
+        BlockState portal = ModBlocks.DARKSIDE_PORTAL.get().defaultBlockState().setValue(DeathPortalBlock_Current.DISALLOW_RETURN, locked /*|| !Config.shouldReturnPortalBeUsable*/);
 
         world.setBlock(pos, portal, Block.UPDATE_CLIENTS);
         world.setBlock(pos.east(), portal, Block.UPDATE_CLIENTS);

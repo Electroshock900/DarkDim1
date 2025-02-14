@@ -17,10 +17,10 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.voidless.voidless.VoidlessMod;
-import net.voidless.voidless.blocks.custom.DeathPortalBlock;
-import net.voidless.voidless.blocks.custom.DeathPortalBlockS;
 import net.voidless.voidless.util.ModBlocks;
 import net.voidless.voidless.util.ModItems;
+import net.voidless.voidless.worldgen.portal.DeathPortalBlock_Current;
+import net.voidless.voidless.worldgen.portal.VoidPortalBlock;
 
 import java.util.LinkedHashMap;
 
@@ -236,11 +236,11 @@ public class ModItemModelProvider extends ItemModelProvider {
     public void evenSimplerBlockItem(RegistryObject<Block> block) {
         this.withExistingParent(VoidlessMod.MODID + ":" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath(),
                 modLoc("block/" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath()));
-    } public void evenSimplerDarkSidePortalItem(RegistryObject<DeathPortalBlock> block) {
+    } public void evenSimplerDarkSidePortalItem(RegistryObject<DeathPortalBlock_Current> block) {
         this.withExistingParent(VoidlessMod.MODID + ":" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath(),
                 modLoc("block/" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath()));
     }
-    public void evenSimplerDarkSidePortalItem2(RegistryObject<DeathPortalBlockS> block) {
+    public void evenSimplerDarkSidePortalItem2(RegistryObject<VoidPortalBlock> block) {
         this.withExistingParent(VoidlessMod.MODID + ":" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath(),
                 modLoc("block/" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath()));
     }

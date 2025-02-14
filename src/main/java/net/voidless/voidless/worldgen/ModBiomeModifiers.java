@@ -7,18 +7,12 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.common.world.ForgeBiomeModifiers;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.voidless.voidless.VoidlessMod;
-import net.voidless.voidless.util.ModEntities;
-import net.voidless.voidless.util.ModTags;
-
-import java.util.List;
 
 public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_DARK_ORE = registerKey("add_dark_ore");
@@ -66,7 +60,7 @@ public class ModBiomeModifiers {
                 GenerationStep.Decoration.VEGETAL_DECORATION));
 
 
-        context.register(ADD_TORTOISE_HYBRID, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
+        /*context.register(ADD_TORTOISE_HYBRID, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(ModTags.Biomes.DARK_BIOMES),
                 List.of(
                         new MobSpawnSettings.SpawnerData(ModEntities.WAR_TORTOISE_HYBRID.get(), 13, 3, 13),
@@ -74,7 +68,7 @@ public class ModBiomeModifiers {
 
                 )
 
-        ));
+        ));*/
 
         /**context.register(ADD_DARK_PILLARS, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(placedFeatures.getOrThrow(DeathFeatures.DARK_STONE_PILLAR.getKey()))

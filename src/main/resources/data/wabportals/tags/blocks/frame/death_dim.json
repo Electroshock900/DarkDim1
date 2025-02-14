@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:glowstone",
+    "voidless:blood_stone"
+  ]
+}

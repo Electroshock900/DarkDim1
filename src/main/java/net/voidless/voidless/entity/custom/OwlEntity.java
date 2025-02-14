@@ -1,13 +1,16 @@
 package net.voidless.voidless.entity.custom;
 
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -21,16 +24,21 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags;
+import net.voidless.voidless.entity.variants.OwlVariant;
+import net.voidless.voidless.util.ModEntities;
 import org.jetbrains.annotations.Nullable;
 
 public class OwlEntity extends Animal implements FlyingAnimal {
 
-    private static final EntityDataAccessor<Boolean> ATTACKING =
-            SynchedEntityData.defineId(OwlEntity.class, EntityDataSerializers.BOOLEAN);
+    /*private static final EntityDataAccessor<Boolean> ATTACKING =
+            SynchedEntityData.defineId(OwlEntity.class, EntityDataSerializers.BOOLEAN);*/
+    private static final EntityDataAccessor<Integer> VARIANT =
+            SynchedEntityData.defineId(OwlEntity.class, EntityDataSerializers.INT);
 
 
     public final AnimationState idleAnimationState = new AnimationState();
@@ -83,10 +91,32 @@ public class OwlEntity extends Animal implements FlyingAnimal {
         return this.entityData.get(ATTACKING);
     }**/
 
+    private int getTypeVariant() {
+        return this.entityData.get(VARIANT);
+    }
+
+    public OwlVariant getVariant() {
+        return OwlVariant.byId(this.getTypeVariant() & 255);
+    }
+
+    private void setVariant(OwlVariant variant) {
+        this.entityData.set(VARIANT, variant.getId() & 255);
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag pCompound) {
+        super.readAdditionalSaveData(pCompound);
+        this.entityData.set(VARIANT, pCompound.getInt("Variant"));
+    }
+    @Override
+    public void addAdditionalSaveData(CompoundTag pCompound) {
+        super.addAdditionalSaveData(pCompound);
+        pCompound.putInt("Variant", this.getTypeVariant());
+    }
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder pBuilder) {
         super.defineSynchedData(pBuilder);
-        //this.entityData.set(ATTACKING,false);
+        pBuilder.define(VARIANT,0);
     }
     public OwlEntity(EntityType<? extends Animal> pType, Level level) {
         super(pType, level);
@@ -142,10 +172,18 @@ public class OwlEntity extends Animal implements FlyingAnimal {
 
     @Nullable
     @Override
-    public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob mob) {
-        return null;
+    public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
+        return ModEntities.OWL.get().create(serverLevel);
     }
 
+    @Override
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty,
+                                        MobSpawnType pSpawnType, @Nullable SpawnGroupData pSpawnGroupData) {
+        OwlVariant variant = Util.getRandom(OwlVariant.values(), this.random);
+        this.setVariant(variant);
+        //this.resetLastPoseChangeTickToFullStand(pLevel.getLevel().getGameTime());
+        return super.finalizeSpawn(pLevel, pDifficulty, pSpawnType, pSpawnGroupData);
+    }
 
     static class OwlWanderGoal extends WaterAvoidingRandomFlyingGoal {
         public OwlWanderGoal(PathfinderMob p_186224_, double p_186225_) {

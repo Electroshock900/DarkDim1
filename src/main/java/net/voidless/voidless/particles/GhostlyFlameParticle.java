@@ -29,10 +29,10 @@ public class GhostlyFlameParticle extends TextureSheetParticle  {
         this.bCol = 0.9f;
     }
     protected GhostlyFlameParticle(ClientLevel world, double x, double y, double z) {
-        super(world, x, y, z,0,0,0.3D);
+        super(world, x, y, z,0,0.5D,0);
         // Particle properties
-        this.setSize(1.3F, 1.3F);
-        this.lifetime = 40; // Adjust lifetime
+        this.setSize(0.13F, 0.13F);
+        this.lifetime = 20; // Adjust lifetime
     }
 
     private void fadeOut() {

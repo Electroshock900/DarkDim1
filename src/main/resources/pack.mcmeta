@@ -1,6 +1,6 @@
 {
-  "pack": {
-    "description": "${mod_id} resources",
-    "pack_format": 34
-  }
+    "pack": {
+        "pack_format": 46,
+        "description": "Portals to other dimensions."
+    }
 }

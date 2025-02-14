@@ -23,8 +23,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.voidless.voidless.VoidlessMod;
-import net.voidless.voidless.blocks.custom.DeathPortalBlock;
-import net.voidless.voidless.blocks.custom.DeathPortalBlockS;
 import net.voidless.voidless.blocks.custom.signs.ModHangingSignBlock;
 import net.voidless.voidless.blocks.custom.signs.ModStandingSignBlock;
 import net.voidless.voidless.blocks.custom.signs.ModWallHangingSignBlock;
@@ -32,7 +30,9 @@ import net.voidless.voidless.blocks.custom.signs.ModWallSignBlock;
 import net.voidless.voidless.blocks.types.DeathLeavesBlock;
 import net.voidless.voidless.blocks.types.ModFlammableRotatedPillarBlock;
 import net.voidless.voidless.fluid.ModFluids;
+import net.voidless.voidless.worldgen.portal.DeathPortalBlock_Current;
 import net.voidless.voidless.worldgen.portal.ModPortalBlock;
+import net.voidless.voidless.worldgen.portal.VoidPortalBlock;
 import net.voidless.voidless.worldgen.tree.ModTreeGrowers;
 
 import java.util.function.Supplier;
@@ -283,15 +283,15 @@ public class ModBlocks {
     //BUCKETS
 
     public static final RegistryObject<LiquidBlock> SOAP_WATER_BLOCK = registerBlock("soap_water_block",
-            () -> new LiquidBlock(ModFluids.SOAP_WATER_FLUID, BlockBehaviour.Properties.of().noLootTable()));
+            () -> new LiquidBlock(ModFluids.SOAP_WATER_FLUID, BlockBehaviour.Properties.of().noLootTable().pushReaction(PushReaction.DESTROY)));
     public static final RegistryObject<LiquidBlock> DARK_ESSENCE_BLOCK = registerBlock("dark_essence_block",
-            () -> new LiquidBlock(ModFluids.DARK_ESSENCE_FLUID, BlockBehaviour.Properties.of().noLootTable()));
+            () -> new LiquidBlock(ModFluids.DARK_ESSENCE_FLUID, BlockBehaviour.Properties.of().noLootTable().pushReaction(PushReaction.DESTROY)));
     public static final RegistryObject<LiquidBlock> ENDER_BLOOD_BLOCK = registerBlock("ender_blood_block",
-            () -> new LiquidBlock(ModFluids.ENDER_BLOOD_FLUID, BlockBehaviour.Properties.of().noLootTable()));
+            () -> new LiquidBlock(ModFluids.ENDER_BLOOD_FLUID, BlockBehaviour.Properties.of().noLootTable().pushReaction(PushReaction.DESTROY)));
     public static final RegistryObject<LiquidBlock> DEITY_BLOOD_BLOCK = registerBlock("deity_blood_block",
-            () -> new LiquidBlock(ModFluids.DEITY_BLOOD_FLUID, BlockBehaviour.Properties.of().noLootTable()));
+            () -> new LiquidBlock(ModFluids.DEITY_BLOOD_FLUID, BlockBehaviour.Properties.of().noLootTable().pushReaction(PushReaction.DESTROY)));
     public static final RegistryObject<LiquidBlock> BLOOD_BLOCK = registerBlock("blood_block",
-            () -> new LiquidBlock(ModFluids.BLOOD_FLUID, BlockBehaviour.Properties.of().noLootTable()));
+            () -> new LiquidBlock(ModFluids.BLOOD_FLUID, BlockBehaviour.Properties.of().noLootTable().pushReaction(PushReaction.DESTROY)));
 
 
     //DARK BIOME STUFF
@@ -349,10 +349,15 @@ public class ModBlocks {
             () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), ModBlocks.LOTUS,
                     BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_CACTUS).noOcclusion()));
 
-    public static final RegistryObject<DeathPortalBlock> DARKSIDE_PORTAL =
-            registerBlock("darkside_portal", () -> new DeathPortalBlock(BlockBehaviour.Properties.of().noLootTable()));
-    public static final RegistryObject<DeathPortalBlockS> DARKSIDE_PORTAL2 =
-            registerBlock("darkside_portal2", () -> new DeathPortalBlockS(BlockBehaviour.Properties.of().noLootTable()));
+    public static final RegistryObject<DeathPortalBlock_Current> DARKSIDE_PORTAL =
+            registerBlock("darkside_portal", () -> new DeathPortalBlock_Current(BlockBehaviour.Properties.of().noLootTable()));
+
+    public static final RegistryObject<VoidPortalBlock> DARKSIDE_PORTAL2 =
+            registerBlock("darkside_portal2", () -> new VoidPortalBlock(//BlockBehaviour.Properties.of().noLootTable()));
+                    BlockBehaviour.Properties.of().noCollission().randomTicks().strength(-1.0F).sound(SoundType.GLASS).lightLevel((p_50884_) -> {
+                        return 11;
+                    }).pushReaction(PushReaction.BLOCK)));
+
     public static final RegistryObject<Block> MODPORTAL =
             registerBlock("modportal", ()-> new ModPortalBlock(BlockBehaviour.Properties.of().noLootTable()));
 
