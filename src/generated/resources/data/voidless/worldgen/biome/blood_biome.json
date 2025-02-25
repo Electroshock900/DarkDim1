@@ -14,24 +14,7 @@
     "water_color": 4325376,
     "water_fog_color": 4325376
   },
-  "features": [
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [
-      "minecraft:spring_water",
-      "minecraft:spring_lava"
-    ],
-    [],
-    [
-      "minecraft:freeze_top_layer"
-    ]
-  ],
+  "features": [],
   "has_precipitation": true,
   "spawn_costs": {},
   "spawners": {

@@ -58,9 +58,9 @@ public static RegistryObject<EntityType<AresArrow>> ARESARROW = ENTITY_TYPES.reg
                     .build(VoidlessMod.MODID + "blood_spine"));
 
     //Cactus Buddy
-    public static final RegistryObject<EntityType<Cactus_Buddy2>> CACTUS_BUDDY =
+    public static final RegistryObject<EntityType<Cactus_Buddy>> CACTUS_BUDDY =
             ENTITY_TYPES.register("cactus_buddy",
-                    () -> EntityType.Builder.of(Cactus_Buddy2::new, MobCategory.CREATURE)
+                    () -> EntityType.Builder.of(Cactus_Buddy::new, MobCategory.CREATURE)
                             .sized(0.4f, 0.4f)
                             .build("cactus_buddy")
             );
@@ -85,7 +85,22 @@ public static RegistryObject<EntityType<AresArrow>> ARESARROW = ENTITY_TYPES.reg
                     ()-> EntityType.Builder.of(Eyeball_Monster::new, MobCategory.MONSTER)
                             .sized(1f,1f)
                             .build("eyeball_monster")
-            );/**
+            );
+
+    public static final RegistryObject<EntityType<MO>> MO =
+            ENTITY_TYPES.register("mo",
+                    ()-> EntityType.Builder.of(MO::new, MobCategory.MONSTER)
+                            .sized(0.7f,0.7f)
+                            .build("mo")
+            );
+
+    public static final RegistryObject<EntityType<Mo2>> MO2 =
+            ENTITY_TYPES.register("mo2",
+                    ()-> EntityType.Builder.of(Mo2::new, MobCategory.MONSTER)
+                            .sized(0.7f,0.7f)
+                            .build("mo2")
+            );
+    /**
     public static final RegistryObject<EntityType<Lion_Thing>> LION_THING =
             ENTITY_TYPES.register("lion_thing",
                     ()-> EntityType.Builder.of(Lion_Thing::new,MobCategory.MONSTER)
@@ -95,7 +110,7 @@ public static RegistryObject<EntityType<AresArrow>> ARESARROW = ENTITY_TYPES.reg
 
     public static final RegistryObject<EntityType<MantaRayEntity>> MANTA_RAY =
             ENTITY_TYPES.register("manta_ray",() ->
-                    EntityType.Builder.of(MantaRayEntity::new,MobCategory.AMBIENT)
+                    EntityType.Builder.of(MantaRayEntity::new,MobCategory.WATER_AMBIENT)
                             .sized(2f,2f)
                             .build("manta_ray")
                             );

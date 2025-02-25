@@ -3,7 +3,6 @@ package net.voidless.voidless.entity.model;// Made with Blockbench 4.8.3
 // Paste this class into your mod and generate all required imports
 
 
-
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.HierarchicalModel;
@@ -15,8 +14,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.voidless.voidless.VoidlessMod;
-import net.voidless.voidless.animations.ModAnimationDefinitions;
-import net.voidless.voidless.entity.custom.Eyeball_Monster;
 
 public class Eyeball_Monster_Model<T extends Entity> extends HierarchicalModel<T> {
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
@@ -53,13 +50,13 @@ public class Eyeball_Monster_Model<T extends Entity> extends HierarchicalModel<T
 		return LayerDefinition.create(meshdefinition, 32, 32);
 	}
 
-	@Override
+	//@Override
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.root().getAllParts().forEach(ModelPart::resetPose);
 		this.applyHeadRotation(netHeadYaw, headPitch, ageInTicks);
 
-		this.animateWalk(ModAnimationDefinitions.EYEBALL_MONSTER_WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
-		this.animate(((Eyeball_Monster) entity).idleAnimationState, ModAnimationDefinitions.EYEBALL_MONSTER_IDLE, ageInTicks, 1f);
+		//this.animateWalk(ModAnimationDefinitions.EYEBALL_MONSTER_WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
+		//this.animate(((Eyeball_Monster) entity).idleAnimationState, ModAnimationDefinitions.EYEBALL_MONSTER_IDLE, ageInTicks, 1f);
 		//this.animate(((Cactus_Buddy2) entity).attackAnimationState, ModAnimationDefinitions.CACTUS_BUDDY_ATTACK, ageInTicks, 1f);
 	}
 	private void applyHeadRotation(float pNetHeadYaw, float pHeadPitch, float pAgeInTicks) {
@@ -75,13 +72,18 @@ public class Eyeball_Monster_Model<T extends Entity> extends HierarchicalModel<T
 		super.renderToBuffer(pPoseStack, pBuffer, pPackedLight, pPackedOverlay, pColor);
 	}
 
-	/**@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-		eyeball_monster.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-	}**/
 
-	@Override
+	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+		eyeball_monster.render(poseStack, vertexConsumer, packedLight, packedOverlay);
+	}
+
+
 	public ModelPart root() {
 		return eyeball_monster;
+	}
+
+
+	public ResourceLocation getAnimationResource(T t) {
+		return null;
 	}
 }

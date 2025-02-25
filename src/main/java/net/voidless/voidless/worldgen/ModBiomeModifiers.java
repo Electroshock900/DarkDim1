@@ -13,6 +13,7 @@ import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.common.world.ForgeBiomeModifiers;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.voidless.voidless.VoidlessMod;
+import net.voidless.voidless.util.ModTags;
 
 public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_DARK_ORE = registerKey("add_dark_ore");
@@ -23,6 +24,9 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_VOID_TREE = registerKey("add_void_tree");
     public static final ResourceKey<BiomeModifier> ADD_DARK_PILLARS = registerKey("add_dark_pillar");
     public static final ResourceKey<BiomeModifier> ADD_TORTOISE_HYBRID = registerKey("add_tortoise_hybrid");
+
+    public static final ResourceKey<BiomeModifier> ADD_COAGULATED_BLOOD_BERG =registerKey("add_squishy_blood_berg");
+    public static final ResourceKey<BiomeModifier> ADD_CONGEALED_BLOOD_BERG =registerKey("add_crunchy_blood_berg");
 
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
@@ -59,6 +63,17 @@ public class ModBiomeModifiers {
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.VOID_TREE_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
 
+        context.register(ADD_COAGULATED_BLOOD_BERG,new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(ModTags.Biomes.BLOOD_OCEANS),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.COAGULATED_BLOOD_BERG)),
+                GenerationStep.Decoration.SURFACE_STRUCTURES
+        ));
+
+        context.register(ADD_CONGEALED_BLOOD_BERG,new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(ModTags.Biomes.BLOOD_OCEANS),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.COAGULATED_BLOOD_BERG)),
+                GenerationStep.Decoration.SURFACE_STRUCTURES
+        ));
 
         /*context.register(ADD_TORTOISE_HYBRID, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
                 biomes.getOrThrow(ModTags.Biomes.DARK_BIOMES),

@@ -59,6 +59,8 @@ public class ModItems {
     public static final RegistryObject<Item> SSE = ITEMS.register("skull_egg", () -> new ForgeSpawnEggItem(ModEntities.SKULL,0xffffff,0xffffff,new Item.Properties()));
     public static final RegistryObject<Item> MSSE = ITEMS.register("mini_skull_egg", () -> new ForgeSpawnEggItem(ModEntities.MINI_SKULL,0x432f02,0xff24ff,new Item.Properties()));
     //public static final RegistryObject<Item> LTSE = ITEMS.register("lion_thing_egg", () -> new ForgeSpawnEggItem(ModEntities.LION_THING,0x773d3d,0x2e2e2e,new Item.Properties()));
+    public static final RegistryObject<Item> MOSE = ITEMS.register("mo_egg", () -> new ForgeSpawnEggItem(ModEntities.MO,0x014415,0x800303,new Item.Properties()));
+    public static final RegistryObject<Item> MO2SE = ITEMS.register("mo2_egg", () -> new ForgeSpawnEggItem(ModEntities.MO2,0x014415,0x800303,new Item.Properties()));
     public static final RegistryObject<Item> MRSE = ITEMS.register("manta_ray_egg", () -> new ForgeSpawnEggItem(ModEntities.MANTA_RAY,0x773d3d,0x2e2e2e,new Item.Properties()));
     public static final RegistryObject<Item> OSE = ITEMS.register("owl_egg", () -> new ForgeSpawnEggItem(ModEntities.OWL,0x773d3d,0xcba5a5,new Item.Properties()));
     public static final RegistryObject<Item> PSE = ITEMS.register("penguin_egg", () -> new ForgeSpawnEggItem(ModEntities.PENGUIN,0x473d77,0x756aa9,new Item.Properties()));

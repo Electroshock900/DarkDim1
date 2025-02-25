@@ -10,13 +10,13 @@ import net.voidless.voidless.VoidlessMod;
 import net.voidless.voidless.enchantments.LifeSteal;
 
 public class ModEnchantmentEffects {
-    public static final DeferredRegister<MapCodec<? extends EnchantmentEntityEffect>> LIFE_STEAL =
+    public static final DeferredRegister<MapCodec<? extends EnchantmentEntityEffect>> ENCHANTMENT_EFFECT =
             DeferredRegister.create(Registries.ENCHANTMENT_ENTITY_EFFECT_TYPE, VoidlessMod.MODID);
 
     public static final RegistryObject<MapCodec<? extends EnchantmentEntityEffect>> LIFESTEAL =
-            LIFE_STEAL.register("life_steal",() -> LifeSteal.CODEC);
+            ENCHANTMENT_EFFECT.register("life_steal",() -> LifeSteal.CODEC);
 
     public static void register(IEventBus eventBus){
-        LIFE_STEAL.register(eventBus);
+        ENCHANTMENT_EFFECT.register(eventBus);
     }
 }

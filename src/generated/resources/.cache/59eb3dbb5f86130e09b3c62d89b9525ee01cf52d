@@ -1,11 +1,13 @@
-// 1.21.1	2025-02-03T11:08:27.2289101	Loot Tables
+// 1.21.1	2025-02-21T00:02:03.9627041	Loot Tables
 a1d1df64523fb975a0ba5127ce0483d9693c8b20 data/voidless/loot_table/blocks/anti_cactus.json
 524ed4b3bc33950c18049239fa80ad1c87bac31a data/voidless/loot_table/blocks/beef_block_cooked.json
 3d6f946f4871d04e5bb1259095c6e739d062d1b3 data/voidless/loot_table/blocks/beef_block_raw.json
 c53dc3dfb136db713ab62b13843774153b5feca8 data/voidless/loot_table/blocks/bloody_dirt.json
 bba2495de8712b6346b6c999ab48a1e50360394b data/voidless/loot_table/blocks/blood_button.json
 9f4a9eedef2c4ecfd74292ee4ab88d57e51506b3 data/voidless/loot_table/blocks/blood_cactus.json
+047cc603bda725c57959aed51dbaa7bc1ceae8ea data/voidless/loot_table/blocks/blood_coagulated.json
 11a9601100f1cc0ab4d637d23f272c0ada1036e0 data/voidless/loot_table/blocks/blood_cobblestone.json
+1bc728935b013452653310222ee80d221365f43b data/voidless/loot_table/blocks/blood_congealed.json
 7f202f9aa9d11909b5a614bb503e53409d40a53a data/voidless/loot_table/blocks/blood_door.json
 84bcb3c624d0bffd8997d94216d1ccf243653a59 data/voidless/loot_table/blocks/blood_fence.json
 6871116f63e50a188b6ea7a19ca83591d0893fbe data/voidless/loot_table/blocks/blood_fence_gate.json

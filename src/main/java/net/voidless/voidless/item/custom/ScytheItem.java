@@ -11,9 +11,18 @@ public class ScytheItem extends SwordItem {
     }
 
     @Override
-    public boolean hurtEnemy(ItemStack stack, LivingEntity livingEntity, LivingEntity entity) {
+    public int getDefaultMaxStackSize() {
+        return super.getDefaultMaxStackSize();
+    }
+
+
+
+    @Override
+    public boolean hurtEnemy(ItemStack stack, LivingEntity shooter, LivingEntity hurt) {
+
+
         //livingEntity.attackAnim;
-        return super.hurtEnemy(stack, livingEntity, entity);
+        return super.hurtEnemy(stack, shooter, hurt);
 
     }
 }

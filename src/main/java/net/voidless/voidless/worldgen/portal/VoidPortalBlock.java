@@ -49,14 +49,14 @@ import javax.annotation.Nullable;
 import java.util.Optional;
 
 public class VoidPortalBlock extends Block implements Portal {
-    public static final MapCodec<VoidPortalBlock> CODEC = simpleCodec(VoidPortalBlock::new);
+    public static final MapCodec<DeathPortalBlock_Current> CODEC = simpleCodec(DeathPortalBlock_Current::new);
     public static final EnumProperty<Direction.Axis> AXIS;
     private static final Logger LOGGER;
     protected static final int AABB_OFFSET = 2;
     protected static final VoxelShape X_AXIS_AABB;
     protected static final VoxelShape Z_AXIS_AABB;
 
-    public MapCodec<VoidPortalBlock> codec() {
+    public MapCodec<DeathPortalBlock_Current> codec() {
         return CODEC;
     }
 
@@ -196,7 +196,7 @@ public class VoidPortalBlock extends Block implements Portal {
     }
 
     public Portal.Transition getLocalTransition() {
-        return Transition.CONFUSION;
+        return Transition.NONE;
     }
 
     public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {

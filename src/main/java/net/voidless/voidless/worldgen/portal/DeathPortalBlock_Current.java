@@ -1,295 +1,262 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.voidless.voidless.worldgen.portal;
 
+import com.mojang.logging.LogUtils;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.BlockUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Direction.Axis;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LightningBolt;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.Portal;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.border.WorldBorder;
 import net.minecraft.world.level.dimension.DimensionType;
-import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.portal.DimensionTransition;
-import net.voidless.voidless.Config;
-import net.voidless.voidless.VoidlessMod;
-import net.voidless.voidless.util.ModParticles;
-import net.voidless.voidless.util.ModSounds;
-import net.voidless.voidless.util.ModTags;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.voidless.voidless.util.ModEntities;
 import net.voidless.voidless.worldgen.dimension.ModDimensions;
-import org.apache.commons.lang3.mutable.MutableInt;
+import net.voidless.voidless.worldgen.portal.forcer.VoidPortalForcer;
+import net.voidless.voidless.worldgen.portal.shape.VoidPortalShape;
+import org.slf4j.Logger;
 
 import javax.annotation.Nullable;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.Optional;
 
+public class DeathPortalBlock_Current extends Block implements Portal {
+    public static final MapCodec<DeathPortalBlock_Current> CODEC = simpleCodec(DeathPortalBlock_Current::new);
+    public static final EnumProperty<Direction.Axis> AXIS;
+    private static final Logger LOGGER;
+    protected static final int AABB_OFFSET = 2;
+    protected static final VoxelShape X_AXIS_AABB;
+    protected static final VoxelShape Z_AXIS_AABB;
 
-
-public class DeathPortalBlock_Current extends Block implements  Portal {
-
-    public static final BooleanProperty DISALLOW_RETURN = BooleanProperty.create("is_one_way");
-    public static final Component PORTAL_UNWORTHY = Component.translatable("misc.voidless.portal_unworthy");
-    //private static final VoxelShape AABB = Shapes.create(new AABB(0.0F, 0.0F, 0.0F, 1.0F, 0.8125F, 1.0F));
-    private static final int MIN_PORTAL_SIZE = 4;
-    private static final HashSet<ServerPlayer> playersNotified = new HashSet<>();
-    @Nullable
-    private static ResourceKey<Level> cachedOriginDimension;
-
-    public DeathPortalBlock_Current(BlockBehaviour.Properties properties) {
-        super(properties);
-        this.registerDefaultState(this.getStateDefinition().any().setValue(DISALLOW_RETURN, false));
+    public MapCodec<DeathPortalBlock_Current> codec() {
+        return CODEC;
     }
 
-    private static void causeLightning(Level level, BlockPos pos, boolean destructive) {
-        LightningBolt bolt = new LightningBolt(EntityType.LIGHTNING_BOLT, level);
-        bolt.setPos(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
-        bolt.setVisualOnly(true);
-        level.addFreshEntity(bolt);
+    public DeathPortalBlock_Current(BlockBehaviour.Properties p_54909_) {
+        super(p_54909_);
+        this.registerDefaultState((BlockState)((BlockState)this.stateDefinition.any()).setValue(AXIS, Axis.X));
+    }
 
-       /* if (destructive && level instanceof ServerLevel) {
-            double range = 3.0D;
-            List<Entity> list = level.getEntitiesOfClass(Entity.class, new AABB(pos).inflate(range));
+    protected VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        switch ((Direction.Axis)pState.getValue(AXIS)) {
+            case Z:
+                return Z_AXIS_AABB;
+            case X:
+            default:
+                return X_AXIS_AABB;
+        }
+    }
 
-            for (Entity victim : list) {
-                if (!ForgeEventFactory.onEntityStruckByLightning(victim, bolt)) {
-                    victim.thunderHit((ServerLevel) level, bolt);
+    protected void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
+        if (pLevel.dimensionType().natural() && pLevel.getGameRules().getBoolean(GameRules.RULE_DOMOBSPAWNING) && pRandom.nextInt(2000) < pLevel.getDifficulty().getId()) {
+            while(pLevel.getBlockState(pPos).is(this)) {
+                pPos = pPos.below();
+            }
+
+            if (pLevel.getBlockState(pPos).isValidSpawn(pLevel, pPos, ModEntities.WAR_TORTOISE_HYBRID.get())) {
+                Entity $$4 = ModEntities.WAR_TORTOISE_HYBRID.get().spawn(pLevel, pPos.above(), MobSpawnType.STRUCTURE);
+                if ($$4 != null) {
+                    $$4.setPortalCooldown();
                 }
             }
-        }*/
-    }
-
-    public static boolean recursivelyValidatePortal(Level level, BlockPos pos, Map<BlockPos, Boolean> blocksChecked, MutableInt portalSize, BlockState poolBlock) {
-        if (portalSize.incrementAndGet() > Config.maxPortalSize) return false;
-
-        boolean isPoolProbablyEnclosed = true;
-
-        for (int i = 0; i < 4 && portalSize.intValue() <= Config.maxPortalSize; i++) {
-            BlockPos positionCheck = pos.relative(Direction.from2DDataValue(i));
-
-            if (!blocksChecked.containsKey(positionCheck)) {
-                BlockState state = level.getBlockState(positionCheck);
-
-                if (state == poolBlock && level.getBlockState(positionCheck.below()).isFaceSturdy(level, pos, Direction.UP)) {
-                    blocksChecked.put(positionCheck, true);
-                    if (isPoolProbablyEnclosed) {
-                        isPoolProbablyEnclosed = recursivelyValidatePortal(level, positionCheck, blocksChecked, portalSize, poolBlock);
-                    }
-
-                } else if (isGrassOrDirt(state) && isNatureBlock(level.getBlockState(positionCheck.above()))) {
-                    blocksChecked.put(positionCheck, false);
-
-                } else return false;
-            }
         }
 
-        return isPoolProbablyEnclosed;
     }
 
-    private static boolean isNatureBlock(BlockState state) {
-        return state.is(ModTags.Blocks.VOIDKIN_BLOCKS);
+    protected BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pFacingPos) {
+        Direction.Axis $$6 = pFacing.getAxis();
+        Direction.Axis $$7 = (Direction.Axis)pState.getValue(AXIS);
+        boolean $$8 = $$7 != $$6 && $$6.isHorizontal();
+        return !$$8 && !pFacingState.is(this) && !(new VoidPortalShape(pLevel, pCurrentPos, $$7)).isComplete() ? Blocks.AIR.defaultBlockState() : super.updateShape(pState, pFacing, pFacingState, pLevel, pCurrentPos, pFacingPos);
     }
 
-    private static boolean isGrassOrDirt(BlockState state) {
-        return state.is(ModTags.Blocks.VOIDKIN_BLOCKS);
-    }
-
-    public static boolean isPlayerNotifiedOfRequirement(ServerPlayer player) {
-        return playersNotified.contains(player);
-    }
-
-    public static void playerNotifiedOfRequirement(ServerPlayer player) {
-        playersNotified.add(player);
-    }
-
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(DISALLOW_RETURN);
-    }
-/*
-    @Override
-    public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
-        return AABB;
-    }
-
-    @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
-        return state.getValue(DISALLOW_RETURN) ? AABB : Shapes.empty();
-    }*/
-
-    @Override
-    public FluidState getFluidState(BlockState state) {
-        // The portal itself is kind of technically water, and this checks the checkbox in Sugar Cane logic to not destroy itself when portal is made.
-        return Fluids.WATER.getFlowing(1, false); // 1 is minimum value. Minecraft wiki at time of this writing has the values backwards.
-    }
-
-
-
-    public boolean canFormPortal(BlockState state) {
-        return state.is(ModTags.Blocks.VOIDKIN_BLOCKS) || state.getBlock() == this && state.getValue(DISALLOW_RETURN);
-    }
-
-
-    @Override
-    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos orientation, boolean isMoving) {
-        boolean good = level.getBlockState(pos.below()).isFaceSturdy(level, pos, Direction.UP);
-
-        for (Direction facing : Direction.Plane.HORIZONTAL) {
-            if (!good) break;
-
-            BlockState neighboringState = level.getBlockState(pos.relative(facing));
-
-            good = isGrassOrDirt(neighboringState) || neighboringState == state;
+    protected void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
+        if (pEntity.canUsePortal(false)) {
+            pEntity.setAsInsidePortal(this, pPos);
         }
 
-        if (!good) {
-            level.levelEvent(LevelEvent.PARTICLES_DESTROY_BLOCK, pos, Block.getId(state));
-            level.setBlock(pos, Blocks.WATER.defaultBlockState(), Block.UPDATE_ALL);
+    }
+
+    public int getPortalTransitionTime(ServerLevel pLevel, Entity pEntity) {
+        if (pEntity instanceof Player $$2) {
+            return Math.max(1, pLevel.getGameRules().getInt($$2.getAbilities().invulnerable ? GameRules.RULE_PLAYERS_NETHER_PORTAL_CREATIVE_DELAY : GameRules.RULE_PLAYERS_NETHER_PORTAL_DEFAULT_DELAY));
+        } else {
+            return 0;
         }
     }
 
-    @Override
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-        if (state == this.defaultBlockState()) {
-            entity.setAsInsidePortal(this::getPortalDestination,pos);
-
-            /*if (entity instanceof ServerPlayer player && !player.isCreative() && !player.isSpectator() && TFConfig.getPortalLockingAdvancement(player) != null) {
-                AdvancementHolder requirement = .getAdvancement(player, Objects.requireNonNull(TFConfig.getPortalLockingAdvancement(player)));
-
-                if (requirement != null && !PlayerHelper.doesPlayerHaveRequiredAdvancement(player, requirement)) {
-                    player.displayClientMessage(PORTAL_UNWORTHY, true);
-
-                    if (!DeathPortalBlock.isPlayerNotifiedOfRequirement(player)) {
-                        // .doesPlayerHaveRequiredAdvancement null-checks already, so we can skip null-checking the `requirement`
-                        DisplayInfo info = requirement.value().display().orElse(null);
-                        PacketDistributor.sendToPlayer(player, info == null ? new MissingAdvancementToastPacket(Component.translatable("twilightforest.ui.advancement.no_title"), new ItemStack(TFBlocks.TWILIGHT_PORTAL_MINIATURE_STRUCTURE.get())) : new MissingAdvancementToastPacket(info.getTitle(), info.getIcon()));
-                        DeathPortalBlock.playerNotifiedOfRequirement(player);
-                    }
-
-                    return;
-                }*/
-            }
-//
-            if (entity.canUsePortal(true)) {
-                entity.setAsInsidePortal(this, entity.blockPosition());
-                //entity.getData(TFDataAttachments.TF_PORTAL_COOLDOWN).setInPortal(true);
-            }
-        }
-
-
-
-    // Full [VanillaCopy] of NetherPortalBlock.animateTick
-    @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource rand) {
-        int random = rand.nextInt(100);
-        //if (state.getValue(this.) && random < 80) return;
-
-        if (random == 0) {
-            level.playLocalSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, ModSounds.SOUND_BLOCK_STEP.get(), SoundSource.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
-        }
-
-        for (int i = 0; i < 4; ++i) {
-            double xPos = pos.getX() + rand.nextFloat();
-            double yPos = pos.getY() + 1D;
-            double zPos = pos.getZ() + rand.nextFloat();
-            double xSpeed = (rand.nextFloat() - 0.5D) * 0.5D;
-            double ySpeed = rand.nextFloat();
-            double zSpeed = (rand.nextFloat() - 0.5D) * 0.5D;
-
-            level.addParticle(ParticleTypes.PORTAL, xPos, yPos, zPos, xSpeed, ySpeed, zSpeed);
-        }
-    }
-
-/*
-    @Override
-    public boolean canPlaceLiquid(@Nullable Player player, BlockGetter getter, BlockPos pos, BlockState state, Fluid fluid) {
-        return false;
-    }
-
-    @Override
-    public boolean placeLiquid(LevelAccessor accessor, BlockPos pos, BlockState state, FluidState fluidState) {
-        return false;
-    }*/
-
-    @Override
-    public int getPortalTransitionTime(ServerLevel level, Entity entity) {
-        return 60;
-    }
-
-
-    @Override
-    public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity) {
-        //if (!pEntity.level().isClientSide()){
-        if(!pLevel.isClientSide) {
-            MinecraftServer server = pEntity.level().getServer();
-            ServerLevel servel = server.getLevel(ModDimensions.DEATH_DIM_LEVEL_KEY);
-            if (servel != null) {
-                pLevel.addParticle(ModParticles.GHOSTLY_FLAME_FX.get(),
-                        pEntity.xOld,
-                        pEntity.yOld,
-                        pEntity.zOld,
-                        -0.5, 1.0d, -1.0d);
-            }
-        }else {
-            pEntity.changeDimension(getPortalDestination(pLevel.getServer().overworld(), pEntity,pPos ));
-
-            //@NotNull ServerLevel servel = new ServerLevel(ModDimensions.DEATH_DIM_LEVEL_KEY);
-
-            pLevel.addParticle(ModParticles.GHOSTLY_FLAME_FX.get(),
-                    pEntity.xOld,
-                    pEntity.yOld,
-                    pEntity.zOld,
-                    -0.5, -1.0d, 1.0d);
-        //pEntity.changeDimension(getPortalDestination())
-
-        VoidlessMod.LOGGER.error("CLIENTSIDE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            /*pEntity.teleportTo(
-                    pLevel.getServer().getLevel(Registries.levelStemToLevel(ModDimensions.DEATH_DIM_KEY))
-                    ,pEntity.xOld+5,pEntity.yOld+1,pEntity.zOld+5,new HashSet<>(),0,0);
-*/
-            //pEntity.changeDimension(getPortalDestination(pEntity.))
-//            pEntity.changeDimension(getPortalDestination(pLevel.getServer().overworld(), pEntity, pPos));
-
-
-        }
-        super.stepOn(pLevel, pPos, pState, pEntity);
-    }
-
-
-    @Override
-    public DimensionTransition getPortalDestination(ServerLevel level, Entity entity, BlockPos pos) {
-        if (cachedOriginDimension == null)
-        {cachedOriginDimension =
-                ResourceKey.create(Registries.DIMENSION, ModDimensions.DEATH_DIM_LEVEL_KEY.location()/*ModDimensions.DEATH_DIM_KEY.location()*/);}
-        ResourceKey<Level> newDimension = level.dimension()==ModDimensions.DEATH_DIM_LEVEL_KEY ? ModDimensions.DEATH_DIM_LEVEL_KEY : cachedOriginDimension;
-        ServerLevel serverlevel = level.getServer().getLevel(newDimension);
-        if (serverlevel == null) {
-            VoidlessMod.LOGGER.error("CLIENTSIDE");
+    @Nullable
+    public DimensionTransition getPortalDestination(ServerLevel pLevel, Entity pEntity, BlockPos pPos) {
+        ResourceKey<Level> $$3 = pLevel.dimension() == ModDimensions.DEATH_DIM_LEVEL_KEY ? Level.OVERWORLD : ModDimensions.DEATH_DIM_LEVEL_KEY;
+        ServerLevel $$4 = pLevel.getServer().getLevel($$3);
+        if ($$4 == null) {
             return null;
         } else {
-            WorldBorder worldborder = serverlevel.getWorldBorder();
-            double d0 = DimensionType.getTeleportationScale(level.dimensionType(), serverlevel.dimensionType());
-            BlockPos newPos = worldborder.clampToBounds(pos.getX() * d0, pos.getY(), pos.getZ() * d0);
-            return ModTeleporter.createTransition(entity, serverlevel, newPos, true);
+            boolean $$5 = $$4.dimension() == ModDimensions.DEATH_DIM_LEVEL_KEY;
+            WorldBorder $$6 = $$4.getWorldBorder();
+            double $$7 = DimensionType.getTeleportationScale(pLevel.dimensionType(), $$4.dimensionType());
+            BlockPos $$8 = $$6.clampToBounds(pEntity.getX() * $$7, pEntity.getY(), pEntity.getZ() * $$7);
+            return this.getExitPortal($$4, pEntity, pPos, $$8, $$5, $$6);
         }
     }
 
+    @Nullable
+    private DimensionTransition getExitPortal(ServerLevel pLevel, Entity pEntity, BlockPos pPos, BlockPos pExitPos, boolean pIsDarkside, WorldBorder pWorldBorder) {
+        VoidPortalForcer vpf = new VoidPortalForcer(pLevel);
+        Optional<BlockPos> $$6 = vpf.findClosestPortalPosition(pExitPos, pIsDarkside, pWorldBorder);
+        BlockUtil.FoundRectangle $$13;
+        DimensionTransition.PostDimensionTransition $$14;
+        if ($$6.isPresent()) {
+            BlockPos $$7 = (BlockPos)$$6.get();
+            BlockState $$8 = pLevel.getBlockState($$7);
+            $$13 = BlockUtil.getLargestRectangleAround($$7, (Direction.Axis)$$8.getValue(BlockStateProperties.HORIZONTAL_AXIS), 21, Axis.Y, 21, (p_343533_) -> {
+                return pLevel.getBlockState(p_343533_) == $$8;
+            });
+            $$14 = DimensionTransition.PLAY_PORTAL_SOUND.then((p_343530_) -> {
+                p_343530_.placePortalTicket($$7);
+            });
+        } else {
+            Direction.Axis $$11 = (Direction.Axis)pEntity.level().getBlockState(pPos).getOptionalValue(AXIS).orElse(Axis.X);
+            VoidPortalForcer vpof = new VoidPortalForcer(pLevel);
+            Optional<BlockUtil.FoundRectangle> $$12 = vpof.createPortal(pExitPos, $$11);
+            if ($$12.isEmpty()) {
+                LOGGER.error("Unable to create a portal, likely target out of worldborder");
+                return null;
+            }
 
+            $$13 = (BlockUtil.FoundRectangle)$$12.get();
+            $$14 = DimensionTransition.PLAY_PORTAL_SOUND.then(DimensionTransition.PLACE_PORTAL_TICKET);
+        }
+
+        return getDimensionTransitionFromExit(pEntity, pPos, $$13, pLevel, $$14);
+    }
+
+    private static DimensionTransition getDimensionTransitionFromExit(Entity pEntity, BlockPos pPos, BlockUtil.FoundRectangle pRectangle, ServerLevel pLevel, DimensionTransition.PostDimensionTransition pPostDimensionTransition) {
+        BlockState $$5 = pEntity.level().getBlockState(pPos);
+        Direction.Axis $$9;
+        Vec3 $$10;
+        if ($$5.hasProperty(BlockStateProperties.HORIZONTAL_AXIS)) {
+            $$9 = (Direction.Axis)$$5.getValue(BlockStateProperties.HORIZONTAL_AXIS);
+            BlockUtil.FoundRectangle $$7 = BlockUtil.getLargestRectangleAround(pPos, $$9, 21, Axis.Y, 21, (p_342174_) -> {
+                return pEntity.level().getBlockState(p_342174_) == $$5;
+            });
+            $$10 = pEntity.getRelativePortalPosition($$9, $$7);
+        } else {
+            $$9 = Axis.X;
+            $$10 = new Vec3(0.5, 0.0, 0.0);
+        }
+
+        return createDimensionTransition(pLevel, pRectangle, $$9, $$10, pEntity, pEntity.getDeltaMovement(), pEntity.getYRot(), pEntity.getXRot(), pPostDimensionTransition);
+    }
+
+    private static DimensionTransition createDimensionTransition(ServerLevel pLevel, BlockUtil.FoundRectangle pRectangle, Direction.Axis pAxis, Vec3 pOffset, Entity pEntity, Vec3 pSpeed, float pYRot, float pXRot, DimensionTransition.PostDimensionTransition pPostDimensionTransition) {
+        BlockPos $$9 = pRectangle.minCorner;
+        BlockState $$10 = pLevel.getBlockState($$9);
+        Direction.Axis $$11 = (Direction.Axis)$$10.getOptionalValue(BlockStateProperties.HORIZONTAL_AXIS).orElse(Axis.X);
+        double $$12 = (double)pRectangle.axis1Size;
+        double $$13 = (double)pRectangle.axis2Size;
+        EntityDimensions $$14 = pEntity.getDimensions(pEntity.getPose());
+        int $$15 = pAxis == $$11 ? 0 : 90;
+        Vec3 $$16 = pAxis == $$11 ? pSpeed : new Vec3(pSpeed.z, pSpeed.y, -pSpeed.x);
+        double $$17 = (double)$$14.width() / 2.0 + ($$12 - (double)$$14.width()) * pOffset.x();
+        double $$18 = ($$13 - (double)$$14.height()) * pOffset.y();
+        double $$19 = 0.5 + pOffset.z();
+        boolean $$20 = $$11 == Axis.X;
+        Vec3 $$21 = new Vec3((double)$$9.getX() + ($$20 ? $$17 : $$19), (double)$$9.getY() + $$18, (double)$$9.getZ() + ($$20 ? $$19 : $$17));
+        Vec3 $$22 = VoidPortalShape.findCollisionFreePosition($$21, pLevel, pEntity, $$14);
+        return new DimensionTransition(pLevel, $$22, $$16, pYRot + (float)$$15, pXRot, pPostDimensionTransition);
+    }
+
+    public Portal.Transition getLocalTransition() {
+        return Transition.NONE;
+    }
+
+    public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
+        if (pRandom.nextInt(100) == 0) {
+            pLevel.playLocalSound((double)pPos.getX() + 0.5, (double)pPos.getY() + 0.5, (double)pPos.getZ() + 0.5, SoundEvents.PORTAL_AMBIENT, SoundSource.BLOCKS, 0.5F, pRandom.nextFloat() * 0.4F + 0.8F, false);
+        }
+
+        for(int $$4 = 0; $$4 < 4; ++$$4) {
+            double $$5 = (double)pPos.getX() + pRandom.nextDouble();
+            double $$6 = (double)pPos.getY() + pRandom.nextDouble();
+            double $$7 = (double)pPos.getZ() + pRandom.nextDouble();
+            double $$8 = ((double)pRandom.nextFloat() - 0.5) * 0.5;
+            double $$9 = ((double)pRandom.nextFloat() - 0.5) * 0.5;
+            double $$10 = ((double)pRandom.nextFloat() - 0.5) * 0.5;
+            int $$11 = pRandom.nextInt(2) * 2 - 1;
+            if (!pLevel.getBlockState(pPos.west()).is(this) && !pLevel.getBlockState(pPos.east()).is(this)) {
+                $$5 = (double)pPos.getX() + 0.5 + 0.25 * (double)$$11;
+                $$8 = (double)(pRandom.nextFloat() * 2.0F * (float)$$11);
+            } else {
+                $$7 = (double)pPos.getZ() + 0.5 + 0.25 * (double)$$11;
+                $$10 = (double)(pRandom.nextFloat() * 2.0F * (float)$$11);
+            }
+
+            pLevel.addParticle(ParticleTypes.PORTAL, $$5, $$6, $$7, $$8, $$9, $$10);
+        }
+
+    }
+
+    public ItemStack getCloneItemStack(LevelReader pLevel, BlockPos pPos, BlockState pState) {
+        return ItemStack.EMPTY;
+    }
+
+    protected BlockState rotate(BlockState pState, Rotation pRot) {
+        switch (pRot) {
+            case COUNTERCLOCKWISE_90:
+            case CLOCKWISE_90:
+                switch ((Direction.Axis)pState.getValue(AXIS)) {
+                    case Z -> {
+                        return (BlockState)pState.setValue(AXIS, Axis.X);
+                    }
+                    case X -> {
+                        return (BlockState)pState.setValue(AXIS, Axis.Z);
+                    }
+                    default -> {
+                        return pState;
+                    }
+                }
+            default:
+                return pState;
+        }
+    }
+
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
+        pBuilder.add(new Property[]{AXIS});
+    }
+
+    static {
+        AXIS = BlockStateProperties.HORIZONTAL_AXIS;
+        LOGGER = LogUtils.getLogger();
+        X_AXIS_AABB = Block.box(0.0, 0.0, 6.0, 16.0, 16.0, 10.0);
+        Z_AXIS_AABB = Block.box(6.0, 0.0, 0.0, 10.0, 16.0, 16.0);
+    }
 }
-

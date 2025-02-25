@@ -38,6 +38,6 @@ public class ModPoiTypes {
         //VILLAGER_PROFESSIONS.register(eventBus);
     }
     public static PoiType bootstrap(Registry<PoiType> pRegistry) {
-    return register(pRegistry, DARKSIDE_PORTAL, getBlockStates(ModBlocks.DARKSIDE_PORTAL2.get()), 0, 1);
+    return register(pRegistry, DARKSIDE_PORTAL, getBlockStates(ModBlocks.VOID_PORTAL.get()), 0, 1);
     }
 }

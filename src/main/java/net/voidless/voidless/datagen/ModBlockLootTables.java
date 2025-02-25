@@ -7,7 +7,7 @@ import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.RegistryObject;
 import net.voidless.voidless.util.ModBlocks;
 import net.voidless.voidless.util.ModItems;
@@ -68,6 +68,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.DARK_SAPLING.get());
         dropSelf(ModBlocks.BLOOD_SAPLING.get());
         dropSelf(ModBlocks.VOID_SAPLING.get());
+
+        add(ModBlocks.COAGULATED_BLOOD.get(), (block)-> createSingleItemTableWithSilkTouch(Blocks.AIR,ModBlocks.COAGULATED_BLOOD.get().asItem()));
+        add(ModBlocks.CONGEALED_BLOOD.get(), (block)-> createSingleItemTableWithSilkTouch(Blocks.AIR,ModBlocks.CONGEALED_BLOOD.get().asItem()));
 
         add(ModBlocks.DARK_STONE.get(),(block)-> createSingleItemTableWithSilkTouch(ModBlocks.DARK_COBBLESTONE.get(),ModBlocks.DARK_STONE.get().asItem()));
         add(ModBlocks.BLOOD_STONE.get(),(block)-> createSingleItemTableWithSilkTouch(ModBlocks.BLOOD_COBBLESTONE.get(),ModBlocks.BLOOD_STONE.get().asItem()));

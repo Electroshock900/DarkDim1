@@ -17,7 +17,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.voidless.voidless.util.ModBlocks;
-import net.voidless.voidless.worldgen.portal.VoidPortalBlock;
+import net.voidless.voidless.worldgen.portal.DeathPortalBlock_Current;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
@@ -26,7 +26,7 @@ import java.util.function.Predicate;
 public class VoidPortalShape {
         private static final int MIN_WIDTH = 2;
         public static final int MAX_WIDTH = 21;
-        private static final int MIN_HEIGHT = 3;
+        private static final int MIN_HEIGHT = 2;
         public static final int MAX_HEIGHT = 21;
         private static final BlockBehaviour.StatePredicate FRAME = (p_77720_, p_77721_, p_77722_) -> {
             return p_77720_.isPortalFrame(p_77721_, p_77722_);
@@ -149,7 +149,7 @@ public class VoidPortalShape {
                         return i;
                     }
 
-                    if (blockstate.is(ModBlocks.DARKSIDE_PORTAL2.get())) {
+                    if (blockstate.is(ModBlocks.VOID_PORTAL.get())) {
                         ++this.numPortalBlocks;
                     }
                 }
@@ -159,7 +159,7 @@ public class VoidPortalShape {
         }
 
         private static boolean isEmpty(BlockState pState) {
-            return pState.isAir() || pState.is(BlockTags.FIRE) || pState.is(ModBlocks.DARKSIDE_PORTAL2.get());
+            return pState.isAir() || pState.is(BlockTags.FIRE) || pState.is(ModBlocks.VOID_PORTAL.get());
         }
 
         public boolean isValid() {
@@ -167,7 +167,7 @@ public class VoidPortalShape {
         }
 
         public void createPortalBlocks() {
-            BlockState blockstate = (BlockState) ModBlocks.DARKSIDE_PORTAL2.get().defaultBlockState().setValue(VoidPortalBlock.AXIS, this.axis);
+            BlockState blockstate = (BlockState) ModBlocks.VOID_PORTAL.get().defaultBlockState().setValue(DeathPortalBlock_Current.AXIS, this.axis);
             BlockPos.betweenClosed(this.bottomLeft, this.bottomLeft.relative(Direction.UP, this.height - 1).relative(this.rightDir, this.width - 1)).forEach((p_77725_) -> {
                 this.level.setBlock(p_77725_, blockstate, 18);
             });

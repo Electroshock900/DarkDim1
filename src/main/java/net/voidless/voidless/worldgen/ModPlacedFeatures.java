@@ -28,12 +28,22 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> DARK_ORE_PLACED_KEY = createKey("dark_ore_placed");
     public static final ResourceKey<PlacedFeature> NETHER_DARK_ORE_PLACED_KEY = createKey("nether_dark_ore_placed");
     public static final ResourceKey<PlacedFeature> END_DARK_ORE_PLACED_KEY = createKey("end_dark_ore_placed");
+    public static final ResourceKey<PlacedFeature> CONGEALED_BLOOD_BERG = createKey("congealed_blood");
+    public static final ResourceKey<PlacedFeature> COAGULATED_BLOOD_BERG = createKey("coagulated_blood");
 
     public static final ResourceKey<PlacedFeature> DARK_STONE_PILLAR = createKey("dark_stone_pillar");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
-        /*HolderGetter<ConfiguredFeature<?, ?>>*/
-        var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
+        HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
+        //HolderGetter<ConfiguredFeature<?, ?>> $$1 = pContext.lookup(Registries.CONFIGURED_FEATURE);
+
+
+        Holder<ConfiguredFeature<?, ?>> congealedBlood = configuredFeatures.getOrThrow(ModConfiguredFeatures.CONGEALED_BLOOD);
+        Holder<ConfiguredFeature<?, ?>> coagulatedBlood = configuredFeatures.getOrThrow(ModConfiguredFeatures.COAGULATED_BLOOD);
+        Holder<ConfiguredFeature<?, ?>> congealedBloodBerg = configuredFeatures.getOrThrow(ModConfiguredFeatures.CONGEALED_BLOOD_BERG);
+        Holder<ConfiguredFeature<?, ?>> coagulatedBloodBerg = configuredFeatures.getOrThrow(ModConfiguredFeatures.COAGULATED_BLOOD_BERG);
+
+        //PlacementUtils.register(context, CONGEALED_BLOOD, congealedBlood, new PlacementModifier[]{BiomeFilter.biome()});
 
         register(context, DARK_TREE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.DARK_TREE_KEY),
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(3, 0.1f, 2), ModBlocks.DARK_SAPLING.get()));
@@ -54,7 +64,17 @@ public class ModPlacedFeatures {
                 ModOrePlacement.commonOrePlacement(13, //veins per chunk
                         HeightRangePlacement.uniform(VerticalAnchor.absolute(-13),VerticalAnchor.absolute(80))));
 
-/*
+        PlacementUtils.register(context, COAGULATED_BLOOD_BERG, configuredFeatures.getOrThrow(ModConfiguredFeatures.COAGULATED_BLOOD_BERG),
+                /*new PlacementModifier[]{CountPlacement.of(2), InSquarePlacement.spread(),
+                        PlacementUtils.HEIGHTMAP, RandomOffsetPlacement.vertical(ConstantInt.of(-1)),
+                        BlockPredicateFilter.forPredicate(BlockPredicate.matchesBlocks(new Block[]{Blocks.SNOW_BLOCK})),
+                        */
+                new PlacementModifier[]{RarityFilter.onAverageOnceEvery(16), InSquarePlacement.spread(), BiomeFilter.biome()});
+
+        PlacementUtils.register(context, CONGEALED_BLOOD_BERG, configuredFeatures.getOrThrow(ModConfiguredFeatures.CONGEALED_BLOOD_BERG),
+                new PlacementModifier[]{CountPlacement.of(48), InSquarePlacement.spread(),
+                        BiomeFilter.biome()});
+        /*
         register(context, DARK_STONE_PILLAR, configuredFeatures.getOrThrow(ModConfiguredFeatures.DARK_STONE_PILLAR),
                 countPlacement(4, PlacementUtils.FULL_RANGE));
 */

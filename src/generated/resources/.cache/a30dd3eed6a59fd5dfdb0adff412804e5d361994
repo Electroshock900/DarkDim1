@@ -1,4 +1,4 @@
-// 1.21.1	2025-01-23T16:22:57.1376948	Item Models: voidless
+// 1.21.1	2025-02-17T17:10:50.2391081	Item Models: voidless
 76567540cad5bb296cbf71c14a9cc5c85d4621fe assets/voidless/models/item/amethyst_boots.json
 be00469dcb1b63ecba3418b704e85ae6fc95266c assets/voidless/models/item/amethyst_boots_amethyst_trim.json
 ce456e2e67ccb4a7216c0429b484320d30267a58 assets/voidless/models/item/amethyst_boots_copper_trim.json
@@ -73,6 +73,8 @@ d02e753fdb01ae8458e9ff81b0e911e8a387fdd8 assets/voidless/models/item/iron_war_tu
 42388fe34a014af99dfce328b47e5a64e0ae9544 assets/voidless/models/item/lotus.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/voidless/models/item/manta_ray_egg.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/voidless/models/item/mini_skull_egg.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/voidless/models/item/mo2_egg.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/voidless/models/item/mo_egg.json
 d9a32dc3d518b46c8b69afcf40f134e25646a83d assets/voidless/models/item/netherite_war_turtle_armor.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/voidless/models/item/owl_egg.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/voidless/models/item/penguin_egg.json

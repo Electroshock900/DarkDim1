@@ -7,13 +7,13 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.voidless.voidless.VoidlessMod;
-import net.voidless.voidless.entity.ModModelLayers;
 import net.voidless.voidless.entity.custom.Eyeball_Monster;
 import net.voidless.voidless.entity.model.Eyeball_Monster_Model;
 
-public class Eyeball_Monster_Renderer extends MobRenderer<Eyeball_Monster, Eyeball_Monster_Model<Eyeball_Monster>> {
+public class Eyeball_Monster_Renderer extends MobRenderer<Eyeball_Monster, Eyeball_Monster_Model<Eyeball_Monster>>{
+        //MobRenderer<Eyeball_Monster, Eyeball_Monster_Model<Eyeball_Monster>> {
     public Eyeball_Monster_Renderer(EntityRendererProvider.Context context){
-        super(context, new Eyeball_Monster_Model<>(context.bakeLayer(Eyeball_Monster_Model.LAYER_LOCATION)),2.0F);
+        super(context, new Eyeball_Monster_Model(context.bakeLayer(Eyeball_Monster_Model.LAYER_LOCATION)),2.0F);
     }
 
     @Override

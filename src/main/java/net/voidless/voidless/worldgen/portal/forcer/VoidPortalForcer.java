@@ -15,7 +15,7 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.portal.PortalForcer;
 import net.voidless.voidless.util.ModBlocks;
 import net.voidless.voidless.util.ModPoiTypes;
-import net.voidless.voidless.worldgen.portal.VoidPortalBlock;
+import net.voidless.voidless.worldgen.portal.DeathPortalBlock_Current;
 
 import java.util.Comparator;
 import java.util.Iterator;
@@ -61,10 +61,10 @@ public class VoidPortalForcer extends PortalForcer{
         }));
         //.thenComparingInt(Vec3i::getY));
     }*/
-    @Override
-    public Optional<BlockPos> findClosestPortalPosition(BlockPos pExitPos, boolean pIsDarkSide, WorldBorder pWorldBorder) {
+   // @Override
+    public Optional<BlockPos> fin2dClosestPortalPosition(BlockPos pExitPos, boolean pIsDarkSide, WorldBorder pWorldBorder) {
         PoiManager $$3 = this.level.getPoiManager();
-        int $$4 = 100;//pIsDarkSide ? 16 : 128;
+        int $$4 = pIsDarkSide ? 16 : 100;//pIsDarkSide ? 16 : 128;
         $$3.ensureLoadedAndValid(this.level, pExitPos, $$4);
         Stream<BlockPos> var10000 = $$3.getInSquare((p_230634_) -> {
             return p_230634_.is(ModPoiTypes.DARKSIDE_PORTAL);
@@ -74,9 +74,29 @@ public class VoidPortalForcer extends PortalForcer{
         return var10000.filter(pWorldBorder::isWithinBounds).filter((pos) -> {
             return this.level.getBlockState(pos).hasProperty(BlockStateProperties.HORIZONTAL_AXIS);
         }).min(Comparator.comparingDouble((pos) -> {
-            return pos.distSqr(pExitPos)+1;
-        }));//.thenComparingInt(Vec3i::getY));
+            return pos.distSqr(pExitPos);
+        })
+                /*.thenComparingInt(Vec3i::getY)*/
+        );
 
+    }
+@Override
+    public Optional<BlockPos>  findClosestPortalPosition(BlockPos pExitPos, boolean pIsDarkSide, WorldBorder pWorldBorder) {
+        PoiManager $$3 = this.level.getPoiManager();
+        int $$4 = pIsDarkSide ? 16 : 128;
+        $$3.ensureLoadedAndValid(this.level, pExitPos, $$4);
+        Stream<BlockPos> var10000 = $$3.getInSquare((p_230634_) -> {
+            return p_230634_.is(ModPoiTypes.DARKSIDE_PORTAL);
+        }, pExitPos, $$4, PoiManager.Occupancy.ANY).map(PoiRecord::getPos);
+
+        Objects.requireNonNull(pWorldBorder);
+        return var10000.filter(pWorldBorder::isWithinBounds).filter((pos) -> {
+            return this.level.getBlockState(pos).hasProperty(BlockStateProperties.HORIZONTAL_AXIS);
+        }).min(Comparator.comparingDouble((pos) -> {
+            return pos.distSqr(pExitPos);
+        })
+        );
+        //.thenComparingInt(Vec3i::getY));
     }
 @Override
     public  Optional<BlockUtil.FoundRectangle> createPortal(BlockPos pPos, Direction.Axis pAxis) {
@@ -138,7 +158,7 @@ public class VoidPortalForcer extends PortalForcer{
                             }
                         }
 
-                        BlockState $$26 = (BlockState)ModBlocks.DARKSIDE_PORTAL2.get().defaultBlockState().setValue(VoidPortalBlock.AXIS, pAxis);
+                        BlockState $$26 = (BlockState)ModBlocks.VOID_PORTAL.get().defaultBlockState().setValue(DeathPortalBlock_Current.AXIS, pAxis);
 
                         for($$27 = 0; $$27 < 2; ++$$27) {
                             for($$28 = 0; $$28 < 3; ++$$28) {

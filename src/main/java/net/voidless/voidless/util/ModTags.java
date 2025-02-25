@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Block;
 import net.voidless.voidless.VoidlessMod;
 
 public class ModTags {
+    public ModTags(){}
     public static class Blocks{
         public static final TagKey<Block> VOIDLESS_INFINIBURN = createTag("voidless_infiniburn");
         public static final TagKey<Block> VOIDKIN_BLOCKS = createTag("voidkin_blocks");
@@ -26,6 +27,7 @@ public class ModTags {
         public static final TagKey<Item> VOIDKIN_ITEMS = createTag("voidkin_items");
         public static final TagKey<Item> INVALID_VOIDKIN_ITEMS = createTag("invalid_voidkin_items");
         public static final TagKey<Item> VOIDLESS_ITEMS = createTag("voidless_items");
+        public static final TagKey<Item> MO2FOOD = createTag("mo2_food");
 
 
         private static TagKey<Item> createTag(String name){
@@ -33,10 +35,11 @@ public class ModTags {
         }
     }
     public static class Biomes{
-        public static final TagKey<Biome> DARK_BIOMES = createTag(VoidlessMod.MODID,"dark_biomes");
-        public static final TagKey<Biome> BLOOD_BIOMES = createTag(VoidlessMod.MODID,"blood_biomes");
-/*
-        private static TagKey<Biome> createTag(String name){
+        public static final TagKey<Biome> DARK_BIOMES = createTag("dark_biomes");
+        public static final TagKey<Biome> BLOOD_BIOMES = createTag("blood_biomes");
+        public static final TagKey<Biome> BLOOD_OCEANS = createTag("blood_oceans");
+
+        /*private static TagKey<Biome> createTags(String name){
             return BiomeTags.create(ResourceLocation.fromNamespaceAndPath(VoidlessMod.MODID,name));
         }*/
         private static TagKey<Biome> createTag(String pName) {

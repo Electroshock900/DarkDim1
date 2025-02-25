@@ -73,8 +73,10 @@ public class ModTabs {
                         pOutput.accept(ModItems.EMSE.get());
                         pOutput.accept(ModItems.SSE.get());
                         pOutput.accept(ModItems.MSSE.get());
-                        //pOutput.accept(ModItems.LTSE.get());
                         pOutput.accept(ModItems.MRSE.get());
+                        //pOutput.accept(ModItems.LTSE.get());
+                        pOutput.accept(ModItems.MOSE.get());
+                        pOutput.accept(ModItems.MO2SE.get());
                         pOutput.accept(ModItems.OSE.get());
                         pOutput.accept(ModItems.PSE.get());
                         pOutput.accept(ModItems.WTUSE.get());
@@ -85,8 +87,8 @@ public class ModTabs {
                         pOutput.accept(ModItems.SOUL_COIN.get());
 
                         pOutput.accept(ModItems.DPITEM.get());
-                        pOutput.accept(ModBlocks.DARKSIDE_PORTAL2.get());
-                        pOutput.accept(ModBlocks.MODPORTAL.get());
+                        pOutput.accept(ModBlocks.VOID_PORTAL.get());
+//                        pOutput.accept(ModBlocks.MODPORTAL.get());
                         pOutput.accept(ModBlocks.DARKSIDE_PORTAL.get());
 
 
@@ -171,6 +173,9 @@ public class ModTabs {
                         pOutput.accept(ModBlocks.BLOOD_BLOCK.get());
                         pOutput.accept(ModBlocks.ENDER_BLOOD_BLOCK.get());
                         pOutput.accept(ModBlocks.DEITY_BLOOD_BLOCK.get());
+
+                        pOutput.accept(ModBlocks.COAGULATED_BLOOD.get());
+                        pOutput.accept(ModBlocks.CONGEALED_BLOOD.get());
                     }).build());
     public static final RegistryObject<CreativeModeTab> ABYSS_TAB = CREATIVE_MODE_TABS.register("abyss_tab",
             ()-> CreativeModeTab.builder().icon(()->new ItemStack(ModBlocks.DARK_DIRT.get()))

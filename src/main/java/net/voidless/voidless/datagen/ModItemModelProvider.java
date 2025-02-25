@@ -20,7 +20,6 @@ import net.voidless.voidless.VoidlessMod;
 import net.voidless.voidless.util.ModBlocks;
 import net.voidless.voidless.util.ModItems;
 import net.voidless.voidless.worldgen.portal.DeathPortalBlock_Current;
-import net.voidless.voidless.worldgen.portal.VoidPortalBlock;
 
 import java.util.LinkedHashMap;
 
@@ -119,8 +118,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         withExistingParent(ModItems.MSSE.getId().getPath(), mcLoc("item/template_spawn_egg"));
         //withExistingParent(ModItems.LTSE.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.MRSE.getId().getPath(), mcLoc("item/template_spawn_egg"));
+        withExistingParent(ModItems.MOSE.getId().getPath(), mcLoc("item/template_spawn_egg"));
+        withExistingParent(ModItems.MO2SE.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.OSE.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.PSE.getId().getPath(), mcLoc("item/template_spawn_egg"));
+
         withExistingParent(ModItems.WTSE.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.WTUSE.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(ModItems.WTHSE.getId().getPath(), mcLoc("item/template_spawn_egg"));
@@ -240,7 +242,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         this.withExistingParent(VoidlessMod.MODID + ":" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath(),
                 modLoc("block/" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath()));
     }
-    public void evenSimplerDarkSidePortalItem2(RegistryObject<VoidPortalBlock> block) {
+    public void evenSimplerDarkSidePortalItem2(RegistryObject<DeathPortalBlock_Current> block) {
         this.withExistingParent(VoidlessMod.MODID + ":" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath(),
                 modLoc("block/" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath()));
     }

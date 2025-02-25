@@ -4,12 +4,6 @@
   "effects": {
     "fog_color": 3351608,
     "grass_color": 921102,
-    "particle": {
-      "probability": 0.1,
-      "options": {
-       "type": "minecraft:electric_spark"
-      }
-    },
     "mood_sound": {
       "block_search_extent": 8,
       "offset": 2.0,
@@ -29,15 +23,10 @@
     [],
     [],
     [],
+    [],
     [
-      "minecraft:spring_water",
-      "minecraft:spring_lava"
-    ],
-    [
-      "voidless:dark_tree_placed"
-    ],
-    [
-      "minecraft:freeze_top_layer"
+      "voidless:dark_tree_placed",
+      "minecraft:seagrass_simple"
     ]
   ],
   "has_precipitation": true,

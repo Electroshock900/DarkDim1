@@ -47,8 +47,9 @@ public class ModBiomes {
     }
 
     public static void globalOverworldGeneration(BiomeGenerationSettings.Builder builder) {
-        BiomeDefaultFeatures.addDefaultSprings(builder);
-        BiomeDefaultFeatures.addSurfaceFreezing(builder);
+        //BiomeDefaultFeatures.addDefaultSprings(builder);
+        BiomeDefaultFeatures.addDefaultSeagrass(builder);
+        //BiomeDefaultFeatures.addSurfaceFreezing(builder);
     }
     //candy cane
     public static Biome candyCaneBiome(BootstrapContext<Biome> context) {
@@ -137,7 +138,7 @@ public class ModBiomes {
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.DARK_TREE_PLACED_KEY);
         //biomeBuilder.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, ModPlacedFeatures.DARK_STONE_PILLAR);
         //globalOverworldGeneration(biomeBuilder);
-
+        addSurfaceCongealing(biomeBuilder);
         //SPAWNING
         MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
 
@@ -158,7 +159,7 @@ public class ModBiomes {
                 .hasPrecipitation(true)
                 .downfall(0.8f)
                 .temperature(0.7f)
-                //.generationSettings(biomeBuilder.build())
+                .generationSettings(biomeBuilder.build())
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
                         .waterColor(0x0e000f)
@@ -190,7 +191,7 @@ public class ModBiomes {
                 .hasPrecipitation(true)
                 .downfall(0.8f)
                 .temperature(0.7f)
-                .generationSettings(biomeBuilder.build())
+                .generationSettings(BiomeGenerationSettings.EMPTY)
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
                         .grassColorOverride(0x440206)
@@ -264,6 +265,7 @@ private static Biome darklands(HolderGetter<PlacedFeature> placedFeatures, Holde
             .temperature(-0.5f)
             .downfall(-0.5f)
 
+
             .specialEffects((new BiomeSpecialEffects.Builder())
                     .waterColor(0x6b1325)
                     .grassColorOverride(0x440206)
@@ -280,6 +282,9 @@ private static Biome darklands(HolderGetter<PlacedFeature> placedFeatures, Holde
             ;
 }
 
+    public static void addSurfaceCongealing(BiomeGenerationSettings.Builder pBuilder) {
+        pBuilder.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, ModPlacedFeatures.COAGULATED_BLOOD_BERG);
+    }
 private static int calculateSkyColor(float temp) {
     float s = temp / 3f;
     s = Mth.clamp(s, -1, 1);

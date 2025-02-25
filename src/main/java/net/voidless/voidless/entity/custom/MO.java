@@ -5,21 +5,35 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.world.entity.AnimationState;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.MoveControl;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
+import net.minecraft.world.entity.ai.goal.RangedAttackGoal;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.monster.RangedAttackMob;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import software.bernie.geckolib.animatable.GeoAnimatable;
+import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.animation.AnimatableManager;
+import software.bernie.geckolib.animation.AnimationController;
+import software.bernie.geckolib.constant.DefaultAnimations;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class Eyeball_Monster extends Mob {
+public class MO extends PathfinderMob implements RangedAttackMob,GeoAnimatable {
     private static final EntityDataAccessor<Boolean> ATTACKING =
-            SynchedEntityData.defineId(Eyeball_Monster.class, EntityDataSerializers.BOOLEAN);
+            SynchedEntityData.defineId(MO.class, EntityDataSerializers.BOOLEAN);
+
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
 
-    public Eyeball_Monster(EntityType<? extends Mob> pEntityType, Level pLevel) {
+
+    public MO(EntityType<? extends PathfinderMob> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
     public final AnimationState idleAnimationState = new AnimationState();
@@ -28,22 +42,12 @@ public class Eyeball_Monster extends Mob {
     public int attackAnimationTimeout = 0;
 
     @Override
-    public void aiStep() {
-        super.aiStep();
-        for(int $$0 = 0; $$0 < 2; ++$$0) {
-            this.level().addParticle(ParticleTypes.ASH, this.getRandomX(0.5), this.getRandomY(), this.getRandomZ(0.5), 0.0, 0.0, 0.0);
-        }
-
-    }
-
-    @Override
     public void tick(){
         super.tick();
         if(this.level().isClientSide()){
-            //this.level().addParticle(ParticleTypes.ASH,this.lerpX,this.lerpY,this.lerpZ, this.lerpXRot*2,this.lerpYRot,0.3);
+            this.level().addParticle(ParticleTypes.ASH,this.lerpX,this.lerpY,this.lerpZ, this.lerpXRot*2,this.lerpYRot,0.3);
 
         }
-
     }
 
     private void setupAnimationStates(){
@@ -79,7 +83,7 @@ public class Eyeball_Monster extends Mob {
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder pBuilder) {
         super.defineSynchedData(pBuilder);
-        pBuilder.define(ATTACKING,false);
+        pBuilder.define(ATTACKING, false);
     }
 
     @Override
@@ -103,8 +107,18 @@ public class Eyeball_Monster extends Mob {
         return this.entityData.get(ATTACKING);
     }
 
-    protected int getJumpDelay() {
-        return this.random.nextInt(20) + 10;
+    @Override
+    protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.addGoal(1,new RangedAttackGoal(this,3.0D,30,3.0F));
+        this.goalSelector.addGoal(2,new RandomStrollGoal(this, 1.0D) );
+        this.goalSelector.addGoal(2,new RandomSwimmingGoal(this, 1.0D,1) );
+        this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Mob.class,
+                10, true, false, (p_29932_) -> {
+            return p_29932_ instanceof LivingEntity;
+        }));
     }
 
     public static AttributeSupplier.Builder setAttributes(){
@@ -114,14 +128,49 @@ public class Eyeball_Monster extends Mob {
                 .add(Attributes.ATTACK_DAMAGE,3.0F);
     }
 
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+        controllerRegistrar.add(new AnimationController<>(this, "idle", 5, state -> state.setAndContinue(DefaultAnimations.IDLE)));
+        controllerRegistrar.add(new AnimationController<>(this, "walk", 5, state -> state.setAndContinue(DefaultAnimations.WALK)));
+
+    }
+    protected int getJumpDelay() {
+        return this.random.nextInt(20) + 10;
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return this.cache;
+    }
+
+    @Override
+    public double getTick(Object o) {
+        return 0;
+    }
+
+    @Override
+    public void performRangedAttack(LivingEntity livingEntity, float v) {
+
+    }
+
+    /*
+        private <T extends GeoAnimatable> PlayState predicate(AnimationState<T> tAnimationState) {
+            if(tAnimationState.isMoving()) {
+                tAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.tiger.walk", Animation.LoopType.LOOP));
+                return PlayState.CONTINUE;
+            }
+
+            tAnimationState.getController().setAnimation(RawAnimation.begin().then("animation.tiger.idle", Animation.LoopType.LOOP));
+            return PlayState.CONTINUE;
+        }*/
     static class MOMoveControl extends MoveControl {
         
         private float yRot;
         private int jumpDelay;
-        private final Eyeball_Monster eyeball_monster;
+        private final MO eyeball_monster;
         private boolean isAggressive;
 
-        public MOMoveControl(Eyeball_Monster pEyeball_Monster) {
+        public MOMoveControl(MO pEyeball_Monster) {
             super(pEyeball_Monster);
             this.eyeball_monster = pEyeball_Monster;
             this.yRot = 180.0F * pEyeball_Monster.getYRot() / 3.1415927F;

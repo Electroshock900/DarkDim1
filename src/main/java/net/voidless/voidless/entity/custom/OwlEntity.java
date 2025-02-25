@@ -49,9 +49,6 @@ public class OwlEntity extends Animal implements FlyingAnimal {
     @Override
     public void tick(){
         super.tick();
-        if(this.level().isClientSide()){
-
-        }
     }
 
     private void setupAnimationStates(){
@@ -192,7 +189,7 @@ public class OwlEntity extends Animal implements FlyingAnimal {
 
         @Nullable
         protected Vec3 getPosition() {
-            Vec3 vec3 = null;
+            Vec3 vec3 = null;        
             if (this.mob.isInWater()) {
                 vec3 = LandRandomPos.getPos(this.mob, 15, 15);
             }

@@ -5,10 +5,12 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.voidless.voidless.VoidlessMod;
 import net.voidless.voidless.util.ModBlocks;
 import net.voidless.voidless.util.ModItems;
+import net.voidless.voidless.util.ModTags;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
@@ -53,6 +55,10 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 .add(ModBlocks.DARK_STONE.get().asItem(),
                 ModBlocks.BLOOD_STONE.get().asItem(),
                 ModBlocks.VOID_STONE.get().asItem()
+                );
+        this.tag(ModTags.Items.MO2FOOD)
+                .add(Blocks.CACTUS.asItem(),
+                        ModBlocks.ANTI_CACTUS.get().asItem()
                 );
         //this.tag(ItemTags.)
           //      .add(ModItems.BAR_BRAWL_MUSIC_DISC.get()

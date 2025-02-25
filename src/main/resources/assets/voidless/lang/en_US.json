@@ -119,6 +119,8 @@
   "fluids.voidless.blood_fluid" : "Blood",
   "fluids.voidless.ender_blood_fluid" : "§5Ender Blood",
   "fluids.voidless.deity_blood_fluid" : "§Deity Blood",
+  "block.voidless.coagulated_block": "Coagulated Blood Block",
+  "block.voidless.congealed_block": "Congealed Blood Block",
 
   "effects.voidless.ghostflame" : "Ghost Flame",
   "effects.voidless.spectre" : "Spectre",
@@ -174,7 +176,7 @@
   "item.voidless.anti_spine": "Anti Cactus Spine",
   "item.voidless.cactus_blood_sword": "Blood Cactus Sword",
   "item.voidless.blood_spine": "Blood Spine",
-  "item.voidless.cactus_end_sword": "Ender Cactus Sword"
+  "item.voidless.cactus_end_sword": "Ender Cactus Sword",
 
-
+  "damage_source.voidless.life_steal" : "Life Steal"
 }

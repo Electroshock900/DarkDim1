@@ -2,6 +2,7 @@ package net.voidless.voidless.event;
 
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
@@ -10,13 +11,14 @@ import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.voidless.voidless.VoidlessMod;
-import net.voidless.voidless.entity.ModModelLayers;
 import net.voidless.voidless.entity.custom.*;
 import net.voidless.voidless.entity.model.*;
 import net.voidless.voidless.particles.DeathSkullsParticle;
 import net.voidless.voidless.particles.GhostlyFlameParticle;
 import net.voidless.voidless.util.ModEntities;
 import net.voidless.voidless.util.ModParticles;
+
+import static net.voidless.voidless.entity.render.CheeseHorseRenderer.CHEESE_HORSE_LAYER;
 
 @Mod.EventBusSubscriber(modid = VoidlessMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEventBusEvents {
@@ -27,13 +29,14 @@ public class ModEventBusEvents {
         event.registerLayerDefinition(TChakram_Model.LAYER_LOCATION, TChakram_Model::createBodyLayer);
         event.registerLayerDefinition(Cactus_Buddy_Model.LAYER_LOCATION, Cactus_Buddy_Model::createBodyLayer);
         event.registerLayerDefinition(Eyeball_Monster_Model.LAYER_LOCATION, Eyeball_Monster_Model::createBodyLayer);
+        event.registerLayerDefinition(Mo2_Model.LAYER_LOCATION, Mo2_Model::createBodyLayer);
         //event.registerLayerDefinition(Lion_Thing_Model.LAYER_LOCATION, Lion_Thing_Model::createBodyLayer);
         event.registerLayerDefinition(Manta_Ray_Model.LAYER_LOCATION, Manta_Ray_Model::createBodyLayer);
         event.registerLayerDefinition(Mini_Skull_Entity_Model.LAYER_LOCATION, Mini_Skull_Entity_Model::createBodyLayer);
         event.registerLayerDefinition(Owl_Model.LAYER_LOCATION, Owl_Model::createBodyLayer);
         event.registerLayerDefinition(Penguin_Model.LAYER_LOCATION, Penguin_Model::createBodyLayer);
         event.registerLayerDefinition(Skull_Entity_Model.LAYER_LOCATION, Skull_Entity_Model::createBodyLayer);
-        event.registerLayerDefinition(ModModelLayers.CHEESE_HORSE_LAYER, CheeseHorseModel::createBodyMesh);
+        event.registerLayerDefinition(CHEESE_HORSE_LAYER, CheeseHorseModel::createBodyMesh);
         event.registerLayerDefinition(War_Tortoise_Hybrid_Model.LAYER_LOCATION, War_Tortoise_Hybrid_Model::createBodyLayer);
         event.registerLayerDefinition(War_Tortoise_Hybrid_Model.ARMOR_LAYER_LOCATION, War_Tortoise_Hybrid_Model::createBodyLayer);
         event.registerLayerDefinition(War_Tortoise_Model.LAYER_LOCATION, War_Tortoise_Model::createBodyLayer);
@@ -44,8 +47,10 @@ public class ModEventBusEvents {
 
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {
-        event.put(ModEntities.CACTUS_BUDDY.get(), Cactus_Buddy2.setAttributes().build());
+        event.put(ModEntities.CACTUS_BUDDY.get(), Cactus_Buddy.setAttributes().build());
         event.put(ModEntities.EYEBALL_MONSTER.get(), Eyeball_Monster.setAttributes().build());
+        event.put(ModEntities.MO.get(), MO.setAttributes().build());
+        event.put(ModEntities.MO2.get(), Mo2.setAttributes().build());
         //event.put(ModEntities.LION_THING.get(), Lion_Thing.setAttributes().build());
         event.put(ModEntities.MANTA_RAY.get(), MantaRayEntity.setAttributes().build());
         event.put(ModEntities.MINI_SKULL.get(), Mini_Skull_Entity.setAttributes().build());
@@ -71,7 +76,8 @@ public class ModEventBusEvents {
         //        Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
         event.register(ModEntities.OWL.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
-
+        event.register(ModEntities.MANTA_RAY.get(),SpawnPlacementTypes.IN_WATER, Heightmap.Types.OCEAN_FLOOR,
+                WaterAnimal::checkSurfaceWaterAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
         event.register(ModEntities.CHEESE_HORSE.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
 

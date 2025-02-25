@@ -23,6 +23,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.voidless.voidless.VoidlessMod;
+import net.voidless.voidless.blocks.custom.CoagulatedBloodBlock;
+import net.voidless.voidless.blocks.custom.CongealedBloodBlock;
 import net.voidless.voidless.blocks.custom.signs.ModHangingSignBlock;
 import net.voidless.voidless.blocks.custom.signs.ModStandingSignBlock;
 import net.voidless.voidless.blocks.custom.signs.ModWallHangingSignBlock;
@@ -31,8 +33,6 @@ import net.voidless.voidless.blocks.types.DeathLeavesBlock;
 import net.voidless.voidless.blocks.types.ModFlammableRotatedPillarBlock;
 import net.voidless.voidless.fluid.ModFluids;
 import net.voidless.voidless.worldgen.portal.DeathPortalBlock_Current;
-import net.voidless.voidless.worldgen.portal.ModPortalBlock;
-import net.voidless.voidless.worldgen.portal.VoidPortalBlock;
 import net.voidless.voidless.worldgen.tree.ModTreeGrowers;
 
 import java.util.function.Supplier;
@@ -292,7 +292,10 @@ public class ModBlocks {
             () -> new LiquidBlock(ModFluids.DEITY_BLOOD_FLUID, BlockBehaviour.Properties.of().noLootTable().pushReaction(PushReaction.DESTROY)));
     public static final RegistryObject<LiquidBlock> BLOOD_BLOCK = registerBlock("blood_block",
             () -> new LiquidBlock(ModFluids.BLOOD_FLUID, BlockBehaviour.Properties.of().noLootTable().pushReaction(PushReaction.DESTROY)));
-
+    public static final RegistryObject<Block> COAGULATED_BLOOD = registerBlock("blood_coagulated",
+            ()-> new CoagulatedBloodBlock(BlockBehaviour.Properties.of()));
+    public static final RegistryObject<Block> CONGEALED_BLOOD = registerBlock("blood_congealed",
+            ()-> new CongealedBloodBlock(BlockBehaviour.Properties.of()));
 
     //DARK BIOME STUFF
     public static final RegistryObject<Block> DARK_GRASS = registerBlock("dark_grass_block",
@@ -352,15 +355,15 @@ public class ModBlocks {
     public static final RegistryObject<DeathPortalBlock_Current> DARKSIDE_PORTAL =
             registerBlock("darkside_portal", () -> new DeathPortalBlock_Current(BlockBehaviour.Properties.of().noLootTable()));
 
-    public static final RegistryObject<VoidPortalBlock> DARKSIDE_PORTAL2 =
-            registerBlock("darkside_portal2", () -> new VoidPortalBlock(//BlockBehaviour.Properties.of().noLootTable()));
-                    BlockBehaviour.Properties.of().noCollission().randomTicks().strength(-1.0F).sound(SoundType.GLASS).lightLevel((p_50884_) -> {
+    public static final RegistryObject<DeathPortalBlock_Current> VOID_PORTAL =
+            registerBlock("void_portal", () -> new DeathPortalBlock_Current(//BlockBehaviour.Properties.of().noLootTable()));
+                    BlockBehaviour.Properties.of().noCollission().noLootTable().randomTicks().strength(-1.0F).sound(SoundType.GLASS).lightLevel((p_50884_) -> {
                         return 11;
                     }).pushReaction(PushReaction.BLOCK)));
 
-    public static final RegistryObject<Block> MODPORTAL =
+    /*public static final RegistryObject<Block> MODPORTAL =
             registerBlock("modportal", ()-> new ModPortalBlock(BlockBehaviour.Properties.of().noLootTable()));
-
+*/
 
 
 

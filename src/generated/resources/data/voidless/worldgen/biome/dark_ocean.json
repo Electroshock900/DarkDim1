@@ -22,15 +22,12 @@
     [],
     [],
     [],
-    [
-      "minecraft:spring_water",
-      "minecraft:spring_lava"
-    ],
+    [],
     [
       "voidless:dark_tree_placed"
     ],
     [
-      "minecraft:freeze_top_layer"
+      "voidless:coagulated_blood"
     ]
   ],
   "has_precipitation": true,

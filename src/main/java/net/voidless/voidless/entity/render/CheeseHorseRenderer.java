@@ -3,19 +3,20 @@ package net.voidless.voidless.entity.render;
 import com.google.common.collect.Maps;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.Util;
+import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.entity.AbstractHorseRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.voidless.voidless.VoidlessMod;
 import net.voidless.voidless.entity.custom.CheeseHorse;
 import net.voidless.voidless.entity.model.CheeseHorseModel;
 import net.voidless.voidless.entity.variants.CheeseHorseVariant;
-import net.voidless.voidless.entity.ModModelLayers;
 
 import java.util.Map;
 
 public class CheeseHorseRenderer extends AbstractCheeseHorseRenderer<CheeseHorse, CheeseHorseModel<CheeseHorse>> {
+    public static final ModelLayerLocation CHEESE_HORSE_LAYER = new ModelLayerLocation(
+            ResourceLocation.fromNamespaceAndPath(VoidlessMod.MODID,"cheese_horse_layer"),"main");
     private static final Map<CheeseHorseVariant, ResourceLocation> LOCATION_BY_VARIANT =
             Util.make(Maps.newEnumMap(CheeseHorseVariant.class), map -> {
                 map.put(CheeseHorseVariant.SHADOW,
@@ -28,7 +29,7 @@ public class CheeseHorseRenderer extends AbstractCheeseHorseRenderer<CheeseHorse
             });
 
     public CheeseHorseRenderer(EntityRendererProvider.Context pContext) {
-        super(pContext, new CheeseHorseModel<>(pContext.bakeLayer(ModModelLayers.CHEESE_HORSE_LAYER)), 0.4f);
+        super(pContext, new CheeseHorseModel<>(pContext.bakeLayer(CHEESE_HORSE_LAYER)), 0.4f);
     }
 
     @Override

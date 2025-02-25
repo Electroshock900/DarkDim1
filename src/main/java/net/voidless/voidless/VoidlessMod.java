@@ -149,6 +149,8 @@ public class VoidlessMod
             EntityRenderers.register(ModEntities.CHAKRAM.get(), Chakram_Renderer::new);
             EntityRenderers.register(ModEntities.CACTUS_BUDDY.get(), Cactus_Buddy_Renderer::new);
             EntityRenderers.register(ModEntities.EYEBALL_MONSTER.get(), Eyeball_Monster_Renderer::new);
+            EntityRenderers.register(ModEntities.MO.get(), MO_Renderer::new);
+            EntityRenderers.register(ModEntities.MO2.get(), Mo2_Renderer::new);
             //EntityRenderers.register(ModEntities.LION_THING.get(), Lion_Thing_Renderer::new);
             EntityRenderers.register(ModEntities.MANTA_RAY.get(), Manta_Ray_Renderer::new);
             EntityRenderers.register(ModEntities.MINI_SKULL.get(), Mini_Skull_Renderer::new);

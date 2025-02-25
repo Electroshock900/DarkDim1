@@ -1,34 +1,26 @@
 package net.voidless.voidless.world;
 
 
-
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
-import net.minecraft.data.worldgen.features.FeatureUtils;
-import net.minecraft.data.worldgen.placement.PlacementUtils;
-import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.DarkOakTrunkPlacer;
+import net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedBlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
 import net.voidless.voidless.VoidlessMod;
 import net.voidless.voidless.util.ModBlocks;
 
@@ -43,6 +35,10 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_ORE_KEY = registerKey("dark_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> DEEPSLATE_DARK_ORE_KEY = registerKey("deepslate_dark_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> NETHER_DARK_ORE_KEY = registerKey("nether_dark_ore");
+    public static final ResourceKey<ConfiguredFeature<?,?>> CONGEALED_BLOOD = registerKey("congealed_blood");
+    public static final ResourceKey<ConfiguredFeature<?,?>> CONGEALED_BLOOD_BERG = registerKey("congealed_blood_berg");
+    public static final ResourceKey<ConfiguredFeature<?,?>> COAGULATED_BLOOD = registerKey("coagulated_blood");
+    public static final ResourceKey<ConfiguredFeature<?,?>> COAGULATED_BLOOD_BERG = registerKey("coagulated_blood_berg");
 
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_STONE_PILLAR = registerKey("dark_stone_pillar");
@@ -90,6 +86,10 @@ public class ModConfiguredFeatures {
         register(context, DEEPSLATE_DARK_ORE_KEY,Feature.ORE,new OreConfiguration(netherrackreplacables,ModBlocks.DEEPSLATE_DARK_SHARD_ORE.get().defaultBlockState(),13));
         register(context, NETHER_DARK_ORE_KEY,Feature.ORE,new OreConfiguration(netherrackreplacables,ModBlocks.NETHER_DARK_SHARD_ORE.get().defaultBlockState(),10));
 
+        register(context, COAGULATED_BLOOD, Feature.DISK, new DiskConfiguration(RuleBasedBlockStateProvider.simple(ModBlocks.COAGULATED_BLOOD.get()), BlockPredicate.matchesBlocks(List.of(Blocks.DIRT, Blocks.GRASS_BLOCK, Blocks.PODZOL, Blocks.COARSE_DIRT, Blocks.MYCELIUM, Blocks.SNOW_BLOCK, ModBlocks.COAGULATED_BLOOD.get())), UniformInt.of(2, 3), 1));
+        register(context, COAGULATED_BLOOD_BERG, Feature.ICEBERG, new BlockStateConfiguration(ModBlocks.COAGULATED_BLOOD.get().defaultBlockState()));
+        register(context, CONGEALED_BLOOD_BERG, Feature.ICEBERG, new BlockStateConfiguration(ModBlocks.CONGEALED_BLOOD.get().defaultBlockState()));
+        //register(context, COAGULATED_BLOOD,Feature.BLUE_ICE, new NoneFeatureConfiguration());
         //FeatureUtils.register(context, DARK_STONE_PILLAR, DeathFeatures.DARK_STONE_PILLAR.get());
         /*register(context, DARK_STONE_PILLAR,
                 Feature.BLOCK_PILE, new BlockPileConfiguration(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()

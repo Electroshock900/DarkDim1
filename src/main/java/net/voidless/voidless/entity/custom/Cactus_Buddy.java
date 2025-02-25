@@ -1,6 +1,7 @@
 package net.voidless.voidless.entity.custom;
 
 
+import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -8,6 +9,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -15,22 +17,27 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.voidless.voidless.entity.projectiles.Cactus_Spine;
+import net.voidless.voidless.entity.variants.CactusBuddyVariant;
 import net.voidless.voidless.util.ModEntities;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 
-public class Cactus_Buddy2 extends Animal{//} implements GeoEntity {
+public class Cactus_Buddy extends Animal implements RangedAttackMob {//} implements GeoEntity {
     //private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
     private static final EntityDataAccessor<Boolean> ATTACKING =
-            SynchedEntityData.defineId(Cactus_Buddy2.class, EntityDataSerializers.BOOLEAN);
-    public Cactus_Buddy2(EntityType<? extends Animal> entityType, Level level) {
+            SynchedEntityData.defineId(Cactus_Buddy.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Integer> VARIANT = 
+            SynchedEntityData.defineId(Cactus_Buddy.class,EntityDataSerializers.INT);
+
+    public Cactus_Buddy(EntityType<? extends Animal> entityType, Level level) {
         super(entityType, level);
     }
 
@@ -54,7 +61,7 @@ public class Cactus_Buddy2 extends Animal{//} implements GeoEntity {
         }else{
             --this.idleAnimationTimeout;
         }
-        if(this.isAttacking()&&attackAnimationTimeout<=0){
+        /*if(this.isAttacking()&&attackAnimationTimeout<=0){
             attackAnimationTimeout = 20;
             attackAnimationState.start(this.tickCount);
         }else{
@@ -63,7 +70,7 @@ public class Cactus_Buddy2 extends Animal{//} implements GeoEntity {
 
         if(!this.isAttacking()){
             attackAnimationState.stop();
-        }
+        }*/
     }
 
     @Override
@@ -85,20 +92,43 @@ public class Cactus_Buddy2 extends Animal{//} implements GeoEntity {
         return this.entityData.get(ATTACKING);
     }
 
+    private int getTypeVariant() {
+        return this.entityData.get(VARIANT);
+    }
+
+    public CactusBuddyVariant getVariant() {
+        return CactusBuddyVariant.byId(this.getTypeVariant() & 255);
+    }
+
+    private void setVariant(CactusBuddyVariant variant) {
+        this.entityData.set(VARIANT, variant.getId() & 255);
+    }
     @Override
     protected void defineSynchedData(SynchedEntityData.@NotNull Builder pBuilder) {
-        this.entityData.set(ATTACKING,false);
+        //this.entityData.set(ATTACKING,false);
+        pBuilder.define(ATTACKING, false);
+        pBuilder.define(VARIANT, 0);
         super.defineSynchedData(pBuilder);
     }
     @Override
     public void addAdditionalSaveData(CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
         pCompound.putBoolean("ATTACKING", this.isAttacking());
+        pCompound.putInt("Variant", this.getTypeVariant());
     }
     @Override
     public void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
         this.entityData.set(ATTACKING, pCompound.getBoolean("ATTACKING"));
+        this.entityData.set(VARIANT, pCompound.getInt("Variant"));
+    }
+    @Override
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty,
+                                        MobSpawnType pSpawnType, @Nullable SpawnGroupData pSpawnGroupData) {
+        CactusBuddyVariant variant = Util.getRandom(CactusBuddyVariant.values(), this.random);
+        this.setVariant(variant);
+        //this.resetLastPoseChangeTickToFullStand(pLevel.getLevel().getGameTime());
+        return super.finalizeSpawn(pLevel, pDifficulty, pSpawnType, pSpawnGroupData);
     }
 
 
@@ -122,12 +152,13 @@ public class Cactus_Buddy2 extends Animal{//} implements GeoEntity {
         this.goalSelector.addGoal(3,new BreedGoal(this, 1.12D));
         this.goalSelector.addGoal(3,new TemptGoal(this,2, Ingredient.of(Blocks.CACTUS),false));
         //this.goalSelector.addGoal(2, new MeleeAttackGoal(this,1.2D,false));
-        //this.goalSelector.addGoal(1,new RangedAttackGoal(this,3.0D,30,3.0F));
+        this.goalSelector.addGoal(1,new RangedAttackGoal(this,3.0D,30,3.0F));
         this.goalSelector.addGoal(2,new RandomStrollGoal(this, 1.0D) );
         this.goalSelector.addGoal(2,new RandomSwimmingGoal(this, 1.0D,1) );
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Mob.class, 10, true, false, (p_29932_) -> {
-            return p_29932_ instanceof Creeper;
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Mob.class,
+                10, true, false, (p_29932_) -> {
+            return p_29932_ instanceof LivingEntity;
         }));
 
     }
@@ -144,6 +175,7 @@ public class Cactus_Buddy2 extends Animal{//} implements GeoEntity {
     }
 
     public void performRangedAttack(LivingEntity p_29912_, float p_29913_) {
+
         Cactus_Spine snowball = new Cactus_Spine(this.level(), this);
         double d0 = p_29912_.getEyeY() - (double)1.1F;
         double d1 = p_29912_.getX() - this.getX();

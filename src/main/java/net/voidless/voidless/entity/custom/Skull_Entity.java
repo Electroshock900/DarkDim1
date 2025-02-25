@@ -2,8 +2,6 @@ package net.voidless.voidless.entity.custom;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
@@ -15,7 +13,6 @@ import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomFlyingGoal;
 import net.minecraft.world.entity.ai.util.LandRandomPos;
-import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.LeavesBlock;
@@ -28,8 +25,8 @@ import java.util.EnumSet;
 
 public class Skull_Entity extends FlyingMob implements Enemy {
 
-    private static final EntityDataAccessor<Boolean> ATTACKING =
-            SynchedEntityData.defineId(Skull_Entity.class, EntityDataSerializers.BOOLEAN);
+    /*private static final EntityDataAccessor<Boolean> ATTACKING =
+            SynchedEntityData.defineId(Skull_Entity.class, EntityDataSerializers.BOOLEAN);*/
     Vec3 moveTargetPoint = Vec3.ZERO;
     public Skull_Entity(EntityType<? extends Skull_Entity> skull, Level level) {
         super(skull, level);
@@ -53,7 +50,7 @@ public class Skull_Entity extends FlyingMob implements Enemy {
         }else{
             --this.idleAnimationTimeout;
         }
-        if(this.isAttacking()&&attackAnimationTimeout<=0){
+        /*if(this.isAttacking()&&attackAnimationTimeout<=0){
             attackAnimationTimeout = 20;
             attackAnimationState.start(this.tickCount);
         }else{
@@ -62,8 +59,8 @@ public class Skull_Entity extends FlyingMob implements Enemy {
 
         if(!this.isAttacking()){
             attackAnimationState.stop();
-        }
-    }
+        }*/
+    }/*
     public void setAttacking(boolean attacking){
         this.entityData.set(ATTACKING,attacking);
     }
@@ -71,12 +68,12 @@ public class Skull_Entity extends FlyingMob implements Enemy {
 
     public boolean isAttacking(){
         return this.entityData.get(ATTACKING);
-    }
+    }*/
 
     @Override
     protected void defineSynchedData(SynchedEntityData.@NotNull Builder pBuilder) {
         super.defineSynchedData(pBuilder);
-        this.entityData.set(ATTACKING,false);
+        //this.entityData.set(ATTACKING,false);
     }
 
     public static AttributeSupplier.Builder setAttributes(){
