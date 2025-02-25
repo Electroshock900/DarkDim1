@@ -62,6 +62,7 @@ public class ModEventBusEvents {
         event.put(ModEntities.WAR_TORTOISE_HYBRID.get(), WarTortoiseHybrid.setAttributes().build());
         event.put(ModEntities.WAR_TURTLE.get(), WarTurtle.createAttributes().build());
         }
+
         @SubscribeEvent
     public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
     event.registerSpriteSet(ModParticles.GHOSTLY_FLAME_FX.get(),GhostlyFlameParticle.Provider::new);

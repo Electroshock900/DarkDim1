@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#voidless:blood_oceans",
+  "features": "voidless:coagulated_blood",
+  "step": "surface_structures"
+}
