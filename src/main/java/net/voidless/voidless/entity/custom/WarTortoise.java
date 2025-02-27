@@ -22,7 +22,6 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -37,8 +36,6 @@ import net.minecraftforge.event.ForgeEventFactory;
 import net.voidless.voidless.VoidlessMod;
 import net.voidless.voidless.entity.variants.WarTortoiseVariant;
 import net.voidless.voidless.item.armor.WarTortoiseArmor;
-import net.voidless.voidless.item.armor.WarTortoiseArmor;
-import net.voidless.voidless.screen.custom.WarTortoiseMenu;
 import net.voidless.voidless.screen.custom.WarTortoiseMenu;
 import net.voidless.voidless.util.ModEntities;
 import net.voidless.voidless.util.ModParticles;
@@ -86,7 +83,7 @@ public class WarTortoise extends TamableAnimal implements Saddleable,ContainerLi
                 .add(Attributes.ATTACK_SPEED,1.0F)
                 .add(Attributes.ATTACK_KNOCKBACK,1.0F)
                 .add(Attributes.FOLLOW_RANGE, 24D)
-                .add(Attributes.MOVEMENT_SPEED,0.5F);
+                .add(Attributes.MOVEMENT_SPEED,0.2F);
     }
 
     @Override

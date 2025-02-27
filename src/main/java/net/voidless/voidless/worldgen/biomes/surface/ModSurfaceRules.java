@@ -77,15 +77,15 @@ public class ModSurfaceRules {
                 //SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.BLOOD_BIOME),
                         //SurfaceRules.ifTrue(SurfaceRules.VERY_DEEP_UNDER_FLOOR, RAW_BLOOD)),
 
-                        /*SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DARK_OCEAN),
-                                SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, BLOOD))*/
+                        SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.BLOOD_OCEAN),
+                                SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, BLOOD)),
                         SurfaceRules.sequence(
-                                SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR,BLOOD))
-                      /**SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DARK_OCEAN),
-                                SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR, DARK_STONE)),
-                        SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.DARK_OCEAN),
-                                SurfaceRules.ifTrue(SurfaceRules.VERY_DEEP_UNDER_FLOOR, DARK_STONE))
-                        **/
+                                SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR,BLOOD)),
+                      SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.BLOOD_OCEAN),
+                                SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR, BLOOD)),
+                        SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.BLOOD_OCEAN),
+                                SurfaceRules.ifTrue(SurfaceRules.VERY_DEEP_UNDER_FLOOR, BLOOD))
+
 
 
 

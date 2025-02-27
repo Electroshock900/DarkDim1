@@ -91,7 +91,7 @@ public class WarTortoiseHybrid extends TamableAnimal implements Saddleable,Conta
                 .add(Attributes.ATTACK_DAMAGE, 3.0F)
                 .add(Attributes.ATTACK_SPEED, 1.0F)
                 .add(Attributes.ATTACK_KNOCKBACK, 1.0F)
-                .add(Attributes.FOLLOW_RANGE, 24D)
+                .add(Attributes.FOLLOW_RANGE, 9D)
                 .add(Attributes.MOVEMENT_SPEED, 0.3F)
                 .add(Attributes.WATER_MOVEMENT_EFFICIENCY, 1.3D);
     }

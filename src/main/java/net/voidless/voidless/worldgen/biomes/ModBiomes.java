@@ -26,7 +26,7 @@ public class ModBiomes {
     public static final ResourceKey<Biome> DARK_BIOME = register("dark_biome");
     public static final ResourceKey<Biome> BLOOD_BIOME = register("blood_biome");
     public static final ResourceKey<Biome> DARKLANDS = register("darklands");
-    public static final ResourceKey<Biome> DARK_OCEAN = register("dark_ocean");
+    public static final ResourceKey<Biome> BLOOD_OCEAN = register("blood_ocean");
 
 
     public static void bootstrap(BootstrapContext<Biome> context) {
@@ -39,7 +39,7 @@ public class ModBiomes {
         context.register(DARK_BIOME, darkBiome(context));
         context.register(BLOOD_BIOME, bloodBiome(context));
 
-        context.register(DARK_OCEAN, darkOceanBiome(context));
+        context.register(BLOOD_OCEAN, darkOceanBiome(context));
 
         //context.register(CINNAMON_BIOME, cinnamonBiome(context));
         //context.register(MINT_BIOME, mintBiome(context));
@@ -137,6 +137,8 @@ public class ModBiomes {
 
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.DARK_TREE_PLACED_KEY);
         //biomeBuilder.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, ModPlacedFeatures.DARK_STONE_PILLAR);
+        biomeBuilder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, ModPlacedFeatures.COAGULATED_BLOOD_BERG);
+        biomeBuilder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, ModPlacedFeatures.CONGEALED_BLOOD_BERG);
         //globalOverworldGeneration(biomeBuilder);
         addSurfaceCongealing(biomeBuilder);
         //SPAWNING
@@ -158,7 +160,7 @@ public class ModBiomes {
         return new Biome.BiomeBuilder()
                 .hasPrecipitation(true)
                 .downfall(0.8f)
-                .temperature(0.7f)
+                .temperature(1.0f)
                 .generationSettings(biomeBuilder.build())
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
@@ -240,9 +242,7 @@ public class ModBiomes {
     }
 
 
-public static ResourceKey<Biome> createKey(String name) {
-    return ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(VoidlessMod.MODID, name));
-}
+
 
 private static Biome darklands(HolderGetter<PlacedFeature> placedFeatures, HolderGetter<ConfiguredWorldCarver<?>> worldCarvers) {
     MobSpawnSettings.Builder mobSpawnBuilder = new MobSpawnSettings.Builder();
@@ -294,5 +294,4 @@ private static int calculateSkyColor(float temp) {
     public static ResourceKey<Biome> register(String name) {
         return ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(VoidlessMod.MODID, name));
     }
-
 }
