@@ -19,7 +19,7 @@ public class BloodDripBlock extends Block {
     public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
         super.animateTick(pState, pLevel, pPos, pRandom);
         pLevel.addParticle(ModParticles.DRIPPING_BLOOD.get()
-                ,pPos.getX(),pPos.getY(),pPos.getZ()
-                , 0F,-0.3F,0);
+                ,pPos.getX(),pPos.getY()+1,pPos.getZ()
+                , (float) Math.random(),-0.3F,((float) Math.random()));
     }
 }

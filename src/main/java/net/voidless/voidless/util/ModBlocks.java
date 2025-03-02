@@ -29,6 +29,7 @@ import net.voidless.voidless.blocks.custom.signs.ModHangingSignBlock;
 import net.voidless.voidless.blocks.custom.signs.ModStandingSignBlock;
 import net.voidless.voidless.blocks.custom.signs.ModWallHangingSignBlock;
 import net.voidless.voidless.blocks.custom.signs.ModWallSignBlock;
+import net.voidless.voidless.blocks.types.BloodDripBlock;
 import net.voidless.voidless.blocks.types.DeathLeavesBlock;
 import net.voidless.voidless.blocks.types.ModFlammableRotatedPillarBlock;
 import net.voidless.voidless.fluid.ModFluids;
@@ -309,11 +310,11 @@ public class ModBlocks {
 
 
     public static final RegistryObject<Block> BLOODY_DIRT = registerBlock("bloody_dirt",
-    ()-> new Block(BlockBehaviour.Properties.of()));
+    ()-> new BloodDripBlock(BlockBehaviour.Properties.of()));
     public static final RegistryObject<Block> BLOOD_STONE = registerBlock("blood_stone",
-            ()-> new Block(BlockBehaviour.Properties.of()));
+            ()-> new BloodDripBlock(BlockBehaviour.Properties.of()));
     public static final RegistryObject<Block> BLOOD_COBBLESTONE = registerBlock("blood_cobblestone",
-            ()-> new Block(BlockBehaviour.Properties.of()));
+            ()-> new BloodDripBlock(BlockBehaviour.Properties.of()));
 
 
     public static final RegistryObject<Block> VOID_DIRT = registerBlock("void_dirt",

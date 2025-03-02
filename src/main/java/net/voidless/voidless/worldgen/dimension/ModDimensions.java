@@ -57,7 +57,8 @@ public class ModDimensions {
                 ModTags.Blocks.VOIDLESS_INFINIBURN, // infiniburn
                 BuiltinDimensionTypes.OVERWORLD_EFFECTS, // effectsLocation
                 0.6f, // ambientLight
-                new DimensionType.MonsterSettings(true, false, ConstantInt.of(0), 11)));
+                new DimensionType.MonsterSettings(true, false, ConstantInt.of(0), 11)) );
+        ;
     }
 
     public static void bootstrapStem(BootstrapContext<LevelStem> context) {
@@ -66,7 +67,7 @@ public class ModDimensions {
         HolderGetter<NoiseGeneratorSettings> noiseGenSettings = context.lookup(Registries.NOISE_SETTINGS);
 
          NoiseBasedChunkGenerator wrappedChunkGenerator = new NoiseBasedChunkGenerator(
-                 new FixedBiomeSource(biomeRegistry.getOrThrow(ModBiomes.DARK_BIOME)),
+                 new FixedBiomeSource(biomeRegistry.getOrThrow(ModBiomes.BLOOD_OCEAN)),
                 noiseGenSettings.getOrThrow(NoiseGeneratorSettings.AMPLIFIED));
 
         NoiseBasedChunkGenerator noiseBasedChunkGenerator = new NoiseBasedChunkGenerator(
@@ -82,7 +83,9 @@ public class ModDimensions {
                                 //Pair.of(Climate.parameters(0.4F, 0.3F, 0.2F, 0.1F, 0.0F, 0.7F, 0.0F), biomeRegistry.getOrThrow(Biomes.SUNFLOWER_PLAINS))
 
                         ))),
-                noiseGenSettings.getOrThrow(NoiseGeneratorSettings.OVERWORLD));
+                noiseGenSettings.getOrThrow(NoiseGeneratorSettings.OVERWORLD)
+
+        );
 
         //LevelStem stem = new LevelStem(dimTypes.getOrThrow(ModDimensions.DEATH_DIM_TYPE), wrappedChunkGenerator);
         LevelStem stem = new LevelStem(dimTypes.getOrThrow(DEATH_DIM_TYPE), noiseBasedChunkGenerator);

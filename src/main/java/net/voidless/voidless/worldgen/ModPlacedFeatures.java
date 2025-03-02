@@ -28,8 +28,9 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> DARK_ORE_PLACED_KEY = createKey("dark_ore_placed");
     public static final ResourceKey<PlacedFeature> NETHER_DARK_ORE_PLACED_KEY = createKey("nether_dark_ore_placed");
     public static final ResourceKey<PlacedFeature> END_DARK_ORE_PLACED_KEY = createKey("end_dark_ore_placed");
-    public static final ResourceKey<PlacedFeature> CONGEALED_BLOOD_BERG = createKey("congealed_blood");
-    public static final ResourceKey<PlacedFeature> COAGULATED_BLOOD_BERG = createKey("coagulated_blood");
+    public static final ResourceKey<PlacedFeature> CONGEALED_BLOOD_BERG = createKey("congealed_blood_berg");
+    public static final ResourceKey<PlacedFeature> COAGULATED_BLOOD_BERG = createKey("coagulated_blood_berg");
+    public static final ResourceKey<PlacedFeature> COAGULATED_BLOOD_PATCH = createKey("coagulated_blood_patch");
 
     public static final ResourceKey<PlacedFeature> DARK_STONE_PILLAR = createKey("dark_stone_pillar");
 
@@ -72,6 +73,10 @@ public class ModPlacedFeatures {
                 new PlacementModifier[]{RarityFilter.onAverageOnceEvery(16), InSquarePlacement.spread(), BiomeFilter.biome()});
 
         PlacementUtils.register(context, CONGEALED_BLOOD_BERG, configuredFeatures.getOrThrow(ModConfiguredFeatures.CONGEALED_BLOOD_BERG),
+                new PlacementModifier[]{CountPlacement.of(48), InSquarePlacement.spread(),
+                        BiomeFilter.biome()});
+
+        PlacementUtils.register(context, COAGULATED_BLOOD_PATCH, configuredFeatures.getOrThrow(ModConfiguredFeatures.COAGULATED_BLOOD),
                 new PlacementModifier[]{CountPlacement.of(48), InSquarePlacement.spread(),
                         BiomeFilter.biome()});
         /*

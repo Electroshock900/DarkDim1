@@ -10,15 +10,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.voidless.voidless.blocks.types.BloodDripBlock;
 import net.voidless.voidless.util.ModBlocks;
 
 import javax.annotation.Nullable;
 
-public class CoagulatedBloodBlock extends Block {
+public class CoagulatedBloodBlock extends BloodDripBlock {
     public static final MapCodec<CoagulatedBloodBlock> CODEC = simpleCodec(CoagulatedBloodBlock::new);
 
     public MapCodec<? extends CoagulatedBloodBlock> codec() {

@@ -17,8 +17,8 @@
     [],
     [],
     [
-      "voidless:coagulated_blood",
-      "voidless:congealed_blood"
+      "voidless:coagulated_blood_berg",
+      "voidless:congealed_blood_berg"
     ],
     [],
     [],
@@ -30,7 +30,7 @@
       "voidless:dark_tree_placed"
     ],
     [
-      "voidless:coagulated_blood"
+      "voidless:coagulated_blood_patch"
     ]
   ],
   "has_precipitation": true,

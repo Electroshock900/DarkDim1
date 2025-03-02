@@ -39,7 +39,7 @@ public class ModBiomes {
         context.register(DARK_BIOME, darkBiome(context));
         context.register(BLOOD_BIOME, bloodBiome(context));
 
-        context.register(BLOOD_OCEAN, darkOceanBiome(context));
+        context.register(BLOOD_OCEAN, bloodOceanBiome(context));
 
         //context.register(CINNAMON_BIOME, cinnamonBiome(context));
         //context.register(MINT_BIOME, mintBiome(context));
@@ -127,7 +127,7 @@ public class ModBiomes {
                         .build())
                 .build();
     }
-    public static Biome darkOceanBiome(BootstrapContext<Biome> context) {
+    public static Biome bloodOceanBiome(BootstrapContext<Biome> context) {
         //BIOME
         BiomeGenerationSettings.Builder biomeBuilder =
                 new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
@@ -283,7 +283,7 @@ private static Biome darklands(HolderGetter<PlacedFeature> placedFeatures, Holde
 }
 
     public static void addSurfaceCongealing(BiomeGenerationSettings.Builder pBuilder) {
-        pBuilder.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, ModPlacedFeatures.COAGULATED_BLOOD_BERG);
+        pBuilder.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, ModPlacedFeatures.COAGULATED_BLOOD_PATCH);
     }
 private static int calculateSkyColor(float temp) {
     float s = temp / 3f;

@@ -195,7 +195,17 @@ public class ModTabs {
                         //pOutput.accept(ModItems.SPINE.get());
                         pOutput.accept(ModItems.ABYSS_BOOTS.get());
                     }).build());
-
+    public static final RegistryObject<CreativeModeTab> BLOOD_TAB = CREATIVE_MODE_TABS.register("blood_tab",
+            ()-> CreativeModeTab.builder().icon(()-> new ItemStack(ModBlocks.COAGULATED_BLOOD.get()))
+                    //.title(Component.literal("§4BLOOOD TAB!!!"))
+                    .displayItems((pParameters, pOutput) ->
+                            {
+                                pOutput.accept(ModBlocks.BLOOD_BLOCK.get());
+                                pOutput.accept(ModBlocks.COAGULATED_BLOOD.get());
+                                pOutput.accept(ModBlocks.CONGEALED_BLOOD.get());
+                            }
+                    )
+                    .hideTitle().build());
 
     public static void register(IEventBus eventBus){
         CREATIVE_MODE_TABS.register(eventBus);
