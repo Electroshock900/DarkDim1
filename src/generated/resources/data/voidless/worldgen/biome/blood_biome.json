@@ -14,7 +14,21 @@
     "water_color": 4325376,
     "water_fog_color": 4325376
   },
-  "features": [],
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "voidless:blood_tree_placed",
+      "minecraft:seagrass_simple"
+    ]
+  ],
   "has_precipitation": true,
   "spawn_costs": {},
   "spawners": {

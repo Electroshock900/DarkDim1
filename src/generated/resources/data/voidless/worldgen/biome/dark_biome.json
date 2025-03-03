@@ -85,7 +85,14 @@
         "weight": 5
       }
     ],
-    "misc": [],
+    "misc": [
+      {
+        "type": "voidless:cactus_buddy",
+        "maxCount": 14,
+        "minCount": 14,
+        "weight": 15
+      }
+    ],
     "monster": [
       {
         "type": "minecraft:spider",

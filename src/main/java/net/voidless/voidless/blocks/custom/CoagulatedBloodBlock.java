@@ -50,10 +50,13 @@ public class CoagulatedBloodBlock extends BloodDripBlock {
     }
 
     protected void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
-        if (pLevel.getBrightness(LightLayer.BLOCK, pPos) > 11 - pState.getLightBlock(pLevel, pPos)) {
-            this.melt(pState, pLevel, pPos);
-        }
+        if (pLevel.rainLevel > 1F) {
+            if (pLevel.getBrightness(LightLayer.BLOCK, pPos) > 11 - pState.getLightBlock(pLevel, pPos)) {
+                this.melt(pState, pLevel, pPos);
 
+
+            }
+        }
     }
 
     protected void melt(BlockState pState, Level pLevel, BlockPos pPos) {

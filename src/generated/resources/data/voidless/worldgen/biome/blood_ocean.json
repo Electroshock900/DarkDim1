@@ -17,17 +17,19 @@
     [],
     [],
     [
-      "voidless:coagulated_blood_berg",
-      "voidless:congealed_blood_berg"
+      "voidless:congealed_blood_berg",
+      "voidless:coagulated_blood_berg"
+    ],
+    [],
+    [
+      "voidless:coagulated_blood_patch"
     ],
     [],
     [],
     [],
     [],
-    [],
-    [],
     [
-      "voidless:dark_tree_placed"
+      "minecraft:seagrass_simple"
     ],
     [
       "voidless:coagulated_blood_patch"

@@ -109,20 +109,21 @@ public class ModBiomes {
         spawnBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.COW, 5, 4, 4));
         spawnBuilder.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.WOLF, 5, 4, 4));
 
-         //spawnBuilder.addSpawn(MobCategory.MISC, new MobSpawnSettings.SpawnerData(ModEntities.CACTUS_BUDDY.get(), 15, 14, 14));
+         spawnBuilder.addSpawn(MobCategory.MISC, new MobSpawnSettings.SpawnerData(ModEntities.CACTUS_BUDDY.get(), 15, 14, 14));
 
         return new Biome.BiomeBuilder()
                 .hasPrecipitation(true)
                 .downfall(0.8f)
                 .temperature(0.7f)
+                .temperatureAdjustment(Biome.TemperatureModifier.NONE)
                 .generationSettings(biomeBuilder.build())
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
-                        .grassColorOverride(0x0e0e0e)
-                        .waterColor(0x0e000f)
-                        .skyColor(0x834088)
-                        .waterFogColor(0x0e000f)
                         .fogColor(0x332438)
+                        .skyColor(0x834088)
+                        .waterColor(0x0e000f)
+                        .waterFogColor(0x0e000f)
+                        .grassColorOverride(0x0e0e0e)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
                         .build())
                 .build();
@@ -135,10 +136,12 @@ public class ModBiomes {
 
         //biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.CANDY_CANE_FLOWER_PLACED_KEY);
 
-        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.DARK_TREE_PLACED_KEY);
-        //biomeBuilder.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, ModPlacedFeatures.DARK_STONE_PILLAR);
-        biomeBuilder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, ModPlacedFeatures.COAGULATED_BLOOD_BERG);
         biomeBuilder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, ModPlacedFeatures.CONGEALED_BLOOD_BERG);
+        biomeBuilder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, ModPlacedFeatures.COAGULATED_BLOOD_BERG);
+        biomeBuilder.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, ModPlacedFeatures.COAGULATED_BLOOD_PATCH);
+        //biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BiomeDefaultFeatures.);
+        BiomeDefaultFeatures.addDefaultSeagrass(biomeBuilder);
+        //biomeBuilder.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, ModPlacedFeatures.DARK_STONE_PILLAR);
         //globalOverworldGeneration(biomeBuilder);
         addSurfaceCongealing(biomeBuilder);
         //SPAWNING
@@ -159,18 +162,21 @@ public class ModBiomes {
 
         return new Biome.BiomeBuilder()
                 .hasPrecipitation(true)
-                .downfall(0.8f)
                 .temperature(1.0f)
+                .temperatureAdjustment(Biome.TemperatureModifier.NONE)
+                .downfall(0.8f)
+
                 .generationSettings(biomeBuilder.build())
-                .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
-                        .waterColor(0x0e000f)
-                        .skyColor(0x834088)
-                        .waterFogColor(0x0e000f)
                         .fogColor(0x332438)
+                        .skyColor(0x834088)
+                        .waterColor(0x0e000f)
+                        .waterFogColor(0x0e000f)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
 
                         .build())
+                .mobSpawnSettings(spawnBuilder.build())
+
                 .build();
     }
     public static Biome bloodBiome(BootstrapContext<Biome> context) {
@@ -191,18 +197,19 @@ public class ModBiomes {
 
         return new Biome.BiomeBuilder()
                 .hasPrecipitation(true)
-                .downfall(0.8f)
                 .temperature(0.7f)
-                .generationSettings(BiomeGenerationSettings.EMPTY)
-                .mobSpawnSettings(spawnBuilder.build())
+                .temperatureAdjustment(Biome.TemperatureModifier.NONE)
+                .downfall(0.8f)
+                .generationSettings(biomeBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
-                        .grassColorOverride(0x440206)
-                        .waterColor(0x420000)
-                        .skyColor(0x408883)
-                        .waterFogColor(0x420000)
                         .fogColor(0x883840)
+                        .skyColor(0x408883)
+                        .waterColor(0x420000)
+                        .waterFogColor(0x420000)
+                        .grassColorOverride(0x440206)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
                         .build())
+                .mobSpawnSettings(spawnBuilder.build())
                 .build();
     }
 
@@ -263,16 +270,16 @@ private static Biome darklands(HolderGetter<PlacedFeature> placedFeatures, Holde
     return (new Biome.BiomeBuilder()).hasPrecipitation(true)
 
             .temperature(-0.5f)
+            .temperatureAdjustment(Biome.TemperatureModifier.NONE)
             .downfall(-0.5f)
-
-
             .specialEffects((new BiomeSpecialEffects.Builder())
-                    .waterColor(0x6b1325)
-                    .grassColorOverride(0x440206)
-                    .waterFogColor(0x521320)
-                    .fogColor(0x1c1433)
-                    .skyColor(calculateSkyColor(-0.5f))
-                    .ambientMoodSound(new AmbientMoodSettings(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_MOOD, 6000, 8, 2.0D))
+                            .fogColor(0x1c1433)
+                            .skyColor(calculateSkyColor(-0.5f))
+                            .waterColor(0x6b1325)
+                            .waterFogColor(0x521320)
+                            .grassColorOverride(0x440206)
+
+                            .ambientMoodSound(new AmbientMoodSettings(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_MOOD, 6000, 8, 2.0D))
                     .backgroundMusic(music).build()
                     )
 
